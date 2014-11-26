@@ -13,7 +13,8 @@ Depends:
 License: GPL-3
 LazyData: true
 Imports:
-    Rcpp (>= 0.11.3)
+    Rcpp (>= 0.11.3),
+    MASS
 Suggests:
     testthat,
     sampling
