@@ -1,3 +1,6 @@
+v0.0-0.3 (2014-11-26)
+===
+
 - Add `eusilc` data from `laeken` package
 - Passes `R CMD check`
 
