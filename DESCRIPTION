@@ -8,5 +8,7 @@ Depends:
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
+Imports:
+    MASS
 Suggests:
     testthat

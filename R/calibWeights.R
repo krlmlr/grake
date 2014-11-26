@@ -69,7 +69,7 @@
 #' summary(weights)
 #'
 #' @export
-#' @import MASS
+#' @importFrom MASS ginv
 
 calibWeights <- function(X, d, totals, q = NULL,
         method = c("raking", "linear", "logit"),
