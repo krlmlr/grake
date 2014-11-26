@@ -1,3 +1,6 @@
+v0.0-0.2 (2014-11-26)
+===
+
 - Import `MASS`, make `ginv` accessible
 - Add `testthat` infrastructure and trivial tests
 - Test with Snap-CI, currently failing
