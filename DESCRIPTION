@@ -11,4 +11,5 @@ Encoding: UTF-8
 Imports:
     MASS
 Suggests:
-    testthat
+    testthat,
+    sampling
