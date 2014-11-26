@@ -1,22 +1,12 @@
 \name{NEWS}
 \title{News for Package 'grake'}
 \encoding{UTF-8}
-\section{Changes in grake version 0.0-0.3 (2014-11-26)}{
-  \itemize{
-    \item Add \code{eusilc} data from \code{laeken} package
-    \item Passes \code{R CMD check}
-  }
-}
-\section{Changes in grake version 0.0-0.2 (2014-11-26)}{
-  \itemize{
-    \item Import \code{MASS}, make \code{ginv} accessible
-    \item Add \code{testthat} infrastructure and trivial tests
-    \item Test with Snap-CI, currently failing
-  }
-}
-\section{Changes in grake version 0.0-0.1 (2014-11-26)}{
+\section{Changes in grake version 0.0-1 (2014-11-26)}{
   \itemize{
     \item Initial setup
-    \item Imported functions \code{calibWeights} and \code{calibVars} from \code{laeken} package
+    \item Imported functions \code{calibWeights} and \code{calibVars} and \code{eusilc} data from
+      \code{laeken} package
+    \item Added \code{testthat} infrastructure and trivial tests
+    \item Testing with Snap-CI, passes \code{R CMD check}
   }
 }
