@@ -65,3 +65,33 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// baseSVD
+arma::vec baseSVD(const arma::mat& X);
+RcppExport SEXP grake_baseSVD(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP );
+        arma::vec __result = baseSVD(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// dcSVD
+arma::vec dcSVD(const arma::mat& X);
+RcppExport SEXP grake_dcSVD(SEXP XSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP );
+        arma::vec __result = dcSVD(X);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}

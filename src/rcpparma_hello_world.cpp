@@ -18,12 +18,12 @@
 arma::mat rcpparma_hello_world() {
     arma::mat m1 = arma::eye<arma::mat>(3, 3);
     arma::mat m2 = arma::eye<arma::mat>(3, 3);
-	                     
+
     return m1 + 3 * (m1 + m2);
 }
 
 
-// another simple example: outer product of a vector, 
+// another simple example: outer product of a vector,
 // returning a matrix
 //
 // [[Rcpp::export]]
@@ -49,4 +49,21 @@ Rcpp::List rcpparma_bothproducts(const arma::colvec & x) {
     double    ip = arma::as_scalar(x.t() * x);
     return Rcpp::List::create(Rcpp::Named("outer")=op,
                               Rcpp::Named("inner")=ip);
+}
+
+
+// [[Rcpp::export]]
+arma::vec baseSVD(const arma::mat & X) {
+    arma::mat U, V;
+    arma::vec S;
+    arma::svd(U, S, V, X, "standard");
+    return S;
+}
+
+// [[Rcpp::export]]
+arma::vec dcSVD(const arma::mat & X) {
+    arma::mat U, V;
+    arma::vec S;
+    arma::svd(U, S, V, X, "dc");
+    return S;
 }

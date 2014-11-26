@@ -17,3 +17,11 @@ rcpparma_bothproducts <- function(x) {
     .Call('grake_rcpparma_bothproducts', PACKAGE = 'grake', x)
 }
 
+baseSVD <- function(X) {
+    .Call('grake_baseSVD', PACKAGE = 'grake', X)
+}
+
+dcSVD <- function(X) {
+    .Call('grake_dcSVD', PACKAGE = 'grake', X)
+}
+
