@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package 'grake'}
 \encoding{UTF-8}
+\section{Changes in grake version 0.0-0.3 (2014-11-26)}{
+  \itemize{
+    \item Add \code{eusilc} data from \code{laeken} package
+    \item Passes \code{R CMD check}
+  }
+}
 \section{Changes in grake version 0.0-0.2 (2014-11-26)}{
   \itemize{
     \item Import \code{MASS}, make \code{ginv} accessible
