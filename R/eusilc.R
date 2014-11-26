@@ -23,53 +23,53 @@
 #' @format
 #' A data frame with 14827 observations on the following 28 variables.
 #' \describe{
-#'   \item{list("db030")}{integer; the household ID.}
-#'   \item{list("hsize")}{integer; the number of persons in the household.}
-#'   \item{list("db040")}{factor; the federal state in which the household is
+#'   \item{\code{db030}}{integer; the household ID.}
+#'   \item{\code{hsize}}{integer; the number of persons in the household.}
+#'   \item{\code{db040}}{factor; the federal state in which the household is
 #'     located (levels \code{Burgenland}, \code{Carinthia},
 #'     \code{Lower Austria}, \code{Salzburg}, \code{Styria}, \code{Tyrol},
 #'     \code{Upper Austria}, \code{Vienna} and \code{Vorarlberg}).}
-#'   \item{list("rb030")}{integer; the personal ID.}
-#'   \item{list("age")}{integer; the person's age.}
-#'   \item{list("rb090")}{factor; the person's gender (levels \code{male} and
+#'   \item{\code{rb030}}{integer; the personal ID.}
+#'   \item{\code{age}}{integer; the person's age.}
+#'   \item{\code{rb090}}{factor; the person's gender (levels \code{male} and
 #'     \code{female}).}
-#'   \item{list("pl030")}{factor; the person's economic status (levels
+#'   \item{\code{pl030}}{factor; the person's economic status (levels
 #'     \code{1} = working full time, \code{2} = working part time, \code{3} =
 #'     unemployed, \code{4} = pupil, student, further training or unpaid work
 #'     experience or in compulsory military or community service, \code{5} = in
 #'     retirement or early retirement or has given up business, \code{6} =
 #'     permanently disabled or/and unfit to work or other inactive person,
 #'     \code{7} = fulfilling domestic tasks and care responsibilities).}
-#'   \item{list("pb220a")}{factor; the person's citizenship (levels \code{AT},
+#'   \item{\code{pb220a}}{factor; the person's citizenship (levels \code{AT},
 #'     \code{EU} and \code{Other}).}
-#'   \item{list("py010n")}{numeric; employee cash or near cash income (net).}
-#'   \item{list("py050n")}{numeric; cash benefits or losses from self-employment
+#'   \item{\code{py010n}}{numeric; employee cash or near cash income (net).}
+#'   \item{\code{py050n}}{numeric; cash benefits or losses from self-employment
 #'     (net).}
-#'   \item{list("py090n")}{numeric; unemployment benefits (net).}
-#'   \item{list("py100n")}{numeric; old-age benefits (net).}
-#'   \item{list("py110n")}{numeric; survivor's benefits (net).}
-#'   \item{list("py120n")}{numeric; sickness benefits (net).}
-#'   \item{list("py130n")}{numeric; disability benefits (net).}
-#'   \item{list("py140n")}{numeric; education-related allowances (net).}
-#'   \item{list("hy040n")}{numeric; income from rental of a property or land
+#'   \item{\code{py090n}}{numeric; unemployment benefits (net).}
+#'   \item{\code{py100n}}{numeric; old-age benefits (net).}
+#'   \item{\code{py110n}}{numeric; survivor's benefits (net).}
+#'   \item{\code{py120n}}{numeric; sickness benefits (net).}
+#'   \item{\code{py130n}}{numeric; disability benefits (net).}
+#'   \item{\code{py140n}}{numeric; education-related allowances (net).}
+#'   \item{\code{hy040n}}{numeric; income from rental of a property or land
 #'     (net).}
-#'   \item{list("hy050n")}{numeric; family/children related allowances (net).}
-#'   \item{list("hy070n")}{numeric; housing allowances (net).}
-#'   \item{list("hy080n")}{numeric; regular inter-household cash transfer
+#'   \item{\code{hy050n}}{numeric; family/children related allowances (net).}
+#'   \item{\code{hy070n}}{numeric; housing allowances (net).}
+#'   \item{\code{hy080n}}{numeric; regular inter-household cash transfer
 #'     received (net).}
-#'   \item{list("hy090n")}{numeric; interest, dividends, profit from capital
+#'   \item{\code{hy090n}}{numeric; interest, dividends, profit from capital
 #'     investments in unincorporated business (net).}
-#'   \item{list("hy110n")}{numeric; income received by people aged under 16
+#'   \item{\code{hy110n}}{numeric; income received by people aged under 16
 #'     (net).}
-#'   \item{list("hy130n")}{numeric; regular inter-household cash transfer paid
+#'   \item{\code{hy130n}}{numeric; regular inter-household cash transfer paid
 #'     (net).}
-#'   \item{list("hy145n")}{numeric; repayments/receipts for tax adjustment (net).}
-#'   \item{list("eqSS")}{numeric; the equivalized household size according to the
+#'   \item{\code{hy145n}}{numeric; repayments/receipts for tax adjustment (net).}
+#'   \item{\code{eqSS}}{numeric; the equivalized household size according to the
 #'     modified OECD scale.}
-#'   \item{list("eqIncome")}{numeric; a slightly simplified version of the
+#'   \item{\code{eqIncome}}{numeric; a slightly simplified version of the
 #'     equivalized household income.}
-#'   \item{list("db090")}{numeric; the household sample weights.}
-#'   \item{list("rb050")}{numeric; the personal sample weights.}
+#'   \item{\code{db090}}{numeric; the household sample weights.}
+#'   \item{\code{rb050}}{numeric; the personal sample weights.}
 #' }
 #' @references
 #' A. Alfons and M. Templ (2013) Estimation of Social Exclusion Indicators from
