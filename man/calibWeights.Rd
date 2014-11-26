@@ -82,7 +82,7 @@ Generalized raking procedures in survey sampling. \emph{Journal of the
 American Statistical Association}, \bold{88}(423), 1013--1020.
 }
 \seealso{
-\code{\link{calibVars}}, \code{\link{bootVar}}
+\code{\link{calibVars}}
 }
 \keyword{survey}
 

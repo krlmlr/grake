@@ -44,7 +44,7 @@
 #'
 #' @author Andreas Alfons
 #'
-#' @seealso \code{\link{calibVars}}, \code{\link{bootVar}}
+#' @seealso \code{\link{calibVars}}
 #'
 #' @references Deville, J.-C. and \enc{Särndal}{Saerndal}, C.-E. (1992)
 #' Calibration estimators in survey sampling. \emph{Journal of the American
