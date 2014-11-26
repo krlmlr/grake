@@ -1,3 +1,6 @@
+- Import `MASS`, make `ginv` accessible
+- Add `testthat` infrastructure and trivial tests
+
 v0.0-0.1 (2014-11-26)
 ===
 
