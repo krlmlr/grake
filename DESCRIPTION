@@ -1,6 +1,6 @@
 Package: grake
 Title: What the Package Does (one line, title case)
-Version: 0.0-0
+Version: 0.0-0.1
 Authors@R: "Kirill Müller <krlml+r@mailbox.org> [aut, cre]"
 Description: What the package does (one paragraph)
 Depends:
