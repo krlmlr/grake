@@ -52,18 +52,14 @@ Rcpp::List rcpparma_bothproducts(const arma::colvec & x) {
 }
 
 
+//' Singular value decomposition via RcppArmadillo
+//' @param X matrix
+//' @param method one of \code{"standard"} or \code{"dc"}
+//' @export
 // [[Rcpp::export]]
-arma::vec baseSVD(const arma::mat & X) {
+arma::vec arma_svd(const arma::mat& X, const std::string& method = "standard") {
     arma::mat U, V;
     arma::vec S;
-    arma::svd(U, S, V, X, "standard");
-    return S;
-}
-
-// [[Rcpp::export]]
-arma::vec dcSVD(const arma::mat & X) {
-    arma::mat U, V;
-    arma::vec S;
-    arma::svd(U, S, V, X, "dc");
+    arma::svd(U, S, V, X, method.c_str());
     return S;
 }

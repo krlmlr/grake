@@ -17,11 +17,11 @@ rcpparma_bothproducts <- function(x) {
     .Call('grake_rcpparma_bothproducts', PACKAGE = 'grake', x)
 }
 
-baseSVD <- function(X) {
-    .Call('grake_baseSVD', PACKAGE = 'grake', X)
-}
-
-dcSVD <- function(X) {
-    .Call('grake_dcSVD', PACKAGE = 'grake', X)
+#' Singular value decomposition via RcppArmadillo
+#' @param X matrix
+#' @param method one of \code{"standard"} or \code{"dc"}
+#' @export
+arma_svd <- function(X, method = "standard") {
+    .Call('grake_arma_svd', PACKAGE = 'grake', X, method)
 }
 

@@ -65,30 +65,16 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
-// baseSVD
-arma::vec baseSVD(const arma::mat& X);
-RcppExport SEXP grake_baseSVD(SEXP XSEXP) {
+// arma_svd
+arma::vec arma_svd(const arma::mat& X, const std::string& method = "standard");
+RcppExport SEXP grake_arma_svd(SEXP XSEXP, SEXP methodSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
         Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP );
-        arma::vec __result = baseSVD(X);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
-// dcSVD
-arma::vec dcSVD(const arma::mat& X);
-RcppExport SEXP grake_dcSVD(SEXP XSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP );
-        arma::vec __result = dcSVD(X);
+        Rcpp::traits::input_parameter< const std::string& >::type method(methodSEXP );
+        arma::vec __result = arma_svd(X, method);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);

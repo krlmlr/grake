@@ -3,6 +3,7 @@
 S3method(calibVars,data.frame)
 S3method(calibVars,default)
 S3method(calibVars,matrix)
+export(arma_svd)
 export(calibVars)
 export(calibWeights)
 importFrom(MASS,ginv)
