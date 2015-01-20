@@ -1,5 +1,7 @@
 context('Trivial')
 
+set.seed(20150120)
+
 test_that('Calibrating a unit matrix against a unit vector', {
   N <- 10
   X <- diag(N)
