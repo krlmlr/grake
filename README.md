@@ -1,1 +1,1 @@
-# grake [![Build Status](https://snap-ci.com/grake/grake/branch/master/build_image)](https://snap-ci.com/grake/grake/branch/master)
+# grake [![Travis-CI Build Status](https://travis-ci.org/grake/grake.png?branch=master)](https://travis-ci.org/grake/grake) [![Build Status](https://snap-ci.com/grake/grake/branch/master/build_image)](https://snap-ci.com/grake/grake/branch/master)
