@@ -16,6 +16,9 @@ test_that('Calibrating a unit matrix against a unit vector with random totals', 
   X <- diag(N)
   d <- rep(1, N)
   totals <- runif(N)
-  g <- calibWeights(X, d, totals)
-  expect_equal(g, totals)
+
+  for (method in eval(formals(calibWeights)$method)) {
+    g <- calibWeights(X, d, totals, method = method)
+    expect_equal(g, totals, info = method)
+  }
 })
