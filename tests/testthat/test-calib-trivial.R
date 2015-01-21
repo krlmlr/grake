@@ -25,6 +25,8 @@ test_that('Calibrating a unit matrix against a unit vector with bounds', {
   totals <- rep(10, N)
   bounds <- c(0.9, 1.1)
 
-  g <- calibWeights(X, d, totals, method = "logit", bounds = bounds)
-  expect_equal(diag(g * X), totals)
+  expect_warning(
+    g <- calibWeights(X, d, totals, method = "logit", bounds = bounds),
+    "no convergence")
+  expect_equal(g, NULL)
 })
