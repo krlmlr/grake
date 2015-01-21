@@ -10,3 +10,14 @@ test_that('NA values are rejected', {
   expect_error(calibWeights(X, d, NA), "missing value")
   expect_error(calibWeights(X, d, totals, q = NA), "missing value")
 })
+
+test_that('Conformance of dimensions', {
+  N <- 10
+  X <- diag(N)
+  d <- rep(1, N)
+  q <- rep(1, N)
+  totals <- rep(1, N)
+  expect_error(calibWeights(X, d, head(totals, -1)), "not equal to number of columns")
+  expect_error(calibWeights(X, d, totals, head(q, -1)), "not equal to number of rows")
+  expect_error(calibWeights(X, d, totals, c(Inf, head(q, -1))), "infinite values")
+})
