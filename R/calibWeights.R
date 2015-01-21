@@ -84,7 +84,7 @@ calibWeights <- function(X, d, totals, q = NULL,
         any(is.na(totals)), !is.null(q) && any(is.na(q)))
     if(any(haveNA)) {
         argsNA <- c("'X'", "'d'", "'totals'", "'q'")[haveNA]
-        stop("missing values in the following arguments",
+        stop("missing values in the following arguments: ",
             paste(argsNA, collapse=", "))
     }
     n <- nrow(X)  # number of rows
@@ -135,7 +135,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 w <- g * d  # update sample weights
                 i <- i + 1  # increase iterator
             }
-            ## check wether procedure converged
+            ## check whether procedure converged
             if(any(is.na(g)) || i > maxit) {
                 warning("no convergence")
                 g <- NULL
@@ -146,7 +146,7 @@ calibWeights <- function(X, d, totals, q = NULL,
             if(length(bounds) < 2) stop("'bounds' must be a vector of length 2")
             else bounds <- bounds[1:2]
             if(bounds[1] >= 1) stop("the lower bound must be smaller than 1")
-            if(bounds[2] <= 1) stop("the lower bound must be larger than 1")
+            if(bounds[2] <= 1) stop("the upper bound must be larger than 1")
             ## some preparations
             A <- diff(bounds)/((1 - bounds[1]) * (bounds[2] - 1))
             # function to bound g-weights
@@ -207,7 +207,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 g[indices] <- g1
                 i <- i+1  # increase iterator
             }
-            ## check wether procedure converged
+            ## check whether procedure converged
             if(any(is.na(g)) || i > maxit) {
                 warning("no convergence")
                 g <- NULL
