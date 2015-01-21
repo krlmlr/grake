@@ -18,7 +18,7 @@ test_that('Calibrating a unit matrix against a unit vector with random totals', 
   expect_equal(g, totals)
 })
 
-test_that('Calibrating a unit matrix against a unit vector with bounds', {
+test_that('Calibrating a unit matrix against a unit vector with bounds, failing', {
   N <- 10
   X <- diag(1:10)
   d <- rep(1, N)
