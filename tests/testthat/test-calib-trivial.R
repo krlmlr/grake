@@ -17,3 +17,14 @@ test_that('Calibrating a unit matrix against a unit vector with random totals', 
   g <- calibWeights(X, d, totals)
   expect_equal(g, totals)
 })
+
+test_that('Calibrating a unit matrix against a unit vector with bounds', {
+  N <- 10
+  X <- diag(1:10)
+  d <- rep(1, N)
+  totals <- rep(10, N)
+  bounds <- c(0.9, 1.1)
+
+  g <- calibWeights(X, d, totals, method = "logit", bounds = bounds)
+  expect_equal(diag(g * X), totals)
+})
