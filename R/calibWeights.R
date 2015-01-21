@@ -135,7 +135,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 w <- g * d  # update sample weights
                 i <- i + 1  # increase iterator
             }
-            ## check wether procedure converged
+            ## check whether procedure converged
             if(any(is.na(g)) || i > maxit) {
                 warning("no convergence")
                 g <- NULL
@@ -207,7 +207,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 g[indices] <- g1
                 i <- i+1  # increase iterator
             }
-            ## check wether procedure converged
+            ## check whether procedure converged
             if(any(is.na(g)) || i > maxit) {
                 warning("no convergence")
                 g <- NULL
