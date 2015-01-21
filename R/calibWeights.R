@@ -84,7 +84,7 @@ calibWeights <- function(X, d, totals, q = NULL,
         any(is.na(totals)), !is.null(q) && any(is.na(q)))
     if(any(haveNA)) {
         argsNA <- c("'X'", "'d'", "'totals'", "'q'")[haveNA]
-        stop("missing values in the following arguments",
+        stop("missing values in the following arguments: ",
             paste(argsNA, collapse=", "))
     }
     n <- nrow(X)  # number of rows
