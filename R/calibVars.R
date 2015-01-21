@@ -44,7 +44,9 @@ calibVars.default <- function(x) {
 }
 
 #' @export
-calibVars.matrix <- function(x) calibVars(as.data.frame(x))
+calibVars.matrix <- function(x) {
+  calibVars(as.data.frame(x))
+}
 
 #' @export
 calibVars.data.frame <- function(x) {
