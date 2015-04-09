@@ -114,7 +114,7 @@ calibWeights <- function(X, d, totals, q = NULL,
         # function to determine whether teh desired accuracy has
         # not yet been reached (to be used in the 'while' loop)
         tolNotReached <- function(X, w, totals, tol) {
-            max(abs(crossprod(X, w) - totals)/totals) >= tol
+            max(abs(crossprod(X, w) - totals) / totals) >= tol
         }
         if(method == "raking") {
             ## multiplicative method (raking)
@@ -148,11 +148,11 @@ calibWeights <- function(X, d, totals, q = NULL,
             if(bounds[1] >= 1) stop("the lower bound must be smaller than 1")
             if(bounds[2] <= 1) stop("the upper bound must be larger than 1")
             ## some preparations
-            A <- diff(bounds)/((1 - bounds[1]) * (bounds[2] - 1))
+            A <- diff(bounds) / ( (1 - bounds[1]) * (bounds[2] - 1) )
             # function to bound g-weights
             getG <- function(u, bounds) {
-                (bounds[1] * (bounds[2]-1) + bounds[2] * (1-bounds[1]) * u) /
-                    (bounds[2]-1 + (1-bounds[1]) * u)
+                (bounds[1] * (bounds[2] - 1) + bounds[2] * (1 - bounds[1]) * u) /
+                    (bounds[2] - 1 + (1 - bounds[1]) * u)
             }
             ## some initial values
             g <- getG(rep.int(1, n), bounds)  # g-weights
@@ -172,7 +172,7 @@ calibWeights <- function(X, d, totals, q = NULL,
             }
             ## iterations
             i <- 1
-            while(!any(is.na(g)) && (tolNotReached(X, g*d, totals, tol) ||
+            while(!any(is.na(g)) && (tolNotReached(X, g * d, totals, tol) ||
                     anyOutOfBounds(g, bounds)) && i <= maxit) {
                 # if some of the g-weights are outside the bounds, these values
                 # are moved to the bounds and only the g-weights within the
@@ -187,7 +187,8 @@ calibWeights <- function(X, d, totals, q = NULL,
                         X1 <- X[indices,, drop=FALSE]
                         d1 <- d[indices]
                         if(length(indices) < n) {
-                            totals1 <- totals - as.vector(t(g[-indices] * d[-indices]) %*% X[-indices, , drop=FALSE])
+                            totals1 <- totals -
+                              as.vector(t(g[-indices] * d[-indices]) %*% X[-indices, , drop=FALSE])
                         }
                         q1 <- q[indices]
                         g1 <- g[indices]
@@ -205,7 +206,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)
                 g1 <- getG(u, bounds)
                 g[indices] <- g1
-                i <- i+1  # increase iterator
+                i <- i + 1  # increase iterator
             }
             ## check whether procedure converged
             if(any(is.na(g)) || i > maxit) {
