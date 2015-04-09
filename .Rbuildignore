@@ -5,3 +5,4 @@
 ^NEWS\.md$
 ^NEWS\.md\.tmpl$
 ^wercker\.yml$
+^\.lintr\.yml$
