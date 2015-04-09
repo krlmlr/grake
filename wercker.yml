@@ -1,9 +1,10 @@
 box: rocker/hadleyverse
 build:
-  steps:
+  before-steps:
     - script:
         name: install
         code: if ! make install; then fail "Install failed"; fi
+  steps:
     - script:
         name: test
         code: if ! make test; then fail "Test failed"; fi
