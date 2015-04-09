@@ -187,7 +187,8 @@ calibWeights <- function(X, d, totals, q = NULL,
                         X1 <- X[indices,, drop=FALSE]
                         d1 <- d[indices]
                         if(length(indices) < n) {
-                            totals1 <- totals - as.vector(t(g[-indices] * d[-indices]) %*% X[-indices, , drop=FALSE])
+                            totals1 <- totals -
+                              as.vector(t(g[-indices] * d[-indices]) %*% X[-indices, , drop=FALSE])
                         }
                         q1 <- q[indices]
                         g1 <- g[indices]

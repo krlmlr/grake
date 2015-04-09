@@ -1,4 +1,4 @@
 linters: with_defaults(
     camel_case_linter = NULL # 14
-    , line_length_linter = NULL # 9
+    , line_length_linter = line_length_linter(100) # 9
   )
