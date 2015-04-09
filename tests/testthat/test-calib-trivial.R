@@ -1,8 +1,8 @@
-context('Trivial')
+context("Trivial")
 
 set.seed(20150120)
 
-test_that('Calibrating a unit matrix against a unit vector', {
+test_that("Calibrating a unit matrix against a unit vector", {
   N <- 10
   X <- diag(N)
   d <- rep(1, N)
@@ -11,7 +11,7 @@ test_that('Calibrating a unit matrix against a unit vector', {
   expect_equal(g, totals)
 })
 
-test_that('Calibrating a unit matrix against a vector with random totals', {
+test_that("Calibrating a unit matrix against a vector with random totals", {
   N <- 10
   X <- diag(N)
   d <- rep(1, N)
@@ -24,7 +24,7 @@ test_that('Calibrating a unit matrix against a vector with random totals', {
 })
 
 
-test_that('Test non-convergence', {
+test_that("Test non-convergence", {
   N <- 10
   X <- diag(N)
   X[1,2] <- 1
@@ -45,7 +45,7 @@ test_that('Test non-convergence', {
   }
 })
 
-test_that('Calibrating a unit matrix against a unit vector with bounds, failing', {
+test_that("Calibrating a unit matrix against a unit vector with bounds, failing", {
   N <- 10
   X <- diag(1:10)
   d <- rep(1, N)

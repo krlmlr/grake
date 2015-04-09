@@ -1,6 +1,6 @@
-context('Argument checks')
+context("Argument checks")
 
-test_that('NA values are rejected', {
+test_that("NA values are rejected", {
   N <- 10
   X <- diag(N)
   d <- rep(1, N)
@@ -11,7 +11,7 @@ test_that('NA values are rejected', {
   expect_error(calibWeights(X, d, totals, q = NA), "missing value")
 })
 
-test_that('Conformance of dimensions', {
+test_that("Conformance of dimensions", {
   N <- 10
   X <- diag(N)
   d <- rep(1, N)
