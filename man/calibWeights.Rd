@@ -6,8 +6,8 @@
 \title{Calibrate sample weights}
 \usage{
 calibWeights(X, d, totals, q = NULL, method = c("raking", "linear",
-  "logit"), bounds = c(0, 10), maxit = 500, tol = 1e-06,
-  eps = .Machine$double.eps)
+  "logit"), bounds = c(0, 10), maxit = 500, ginv = MASS::ginv,
+  tol = 1e-06, eps = .Machine$double.eps)
 }
 \arguments{
 \item{X}{a matrix of binary calibration variables (see
@@ -34,10 +34,10 @@ bound (which must be larger than or equal to 1).}
 
 \item{maxit}{a numeric value giving the maximum number of iterations.}
 
-\item{tol}{the desired accuracy for the iterative procedure.}
+\item{ginv}{a function that computes the Moore-Penrose generalized
+inverse (default: \code{\link[MASS]{ginv}})}
 
-\item{eps}{the desired accuracy for computing the Moore-Penrose generalized
-inverse (see \code{\link[MASS]{ginv}}).}
+\item{tol,eps}{passed to \code{ginv}.}
 }
 \value{
 A numeric vector containing the \emph{g}-weights.
