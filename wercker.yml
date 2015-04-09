@@ -1,4 +1,4 @@
-box: krlmlr/kimisc-test
+box: rocker/hadleyverse
 build:
   steps:
     - script:
