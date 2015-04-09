@@ -148,7 +148,7 @@ calibWeights <- function(X, d, totals, q = NULL,
             if(bounds[1] >= 1) stop("the lower bound must be smaller than 1")
             if(bounds[2] <= 1) stop("the upper bound must be larger than 1")
             ## some preparations
-            A <- diff(bounds)/((1 - bounds[1]) * (bounds[2] - 1))
+            A <- diff(bounds) / ( (1 - bounds[1]) * (bounds[2] - 1) )
             # function to bound g-weights
             getG <- function(u, bounds) {
                 (bounds[1] * (bounds[2]-1) + bounds[2] * (1-bounds[1]) * u) /

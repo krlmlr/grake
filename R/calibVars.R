@@ -54,7 +54,8 @@ calibVars.data.frame <- function(x) {
     res <- mapply(function(x, nam) {
             colnames(x) <- paste(nam, colnames(x), sep=".")
             x
-        }, res, names(x), SIMPLIFY=FALSE)
+        },
+        res, names(x), SIMPLIFY=FALSE)
     res <- do.call("cbind", res)  # combine matrices
     rownames(res) <- row.names(x)  # set rownames from original data.frame
     res
