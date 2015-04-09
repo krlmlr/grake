@@ -46,9 +46,14 @@ bootstrap_snap:
 	curl -L https://raw.githubusercontent.com/krlmlr/r-snap-texlive/master/install.sh | sh
 	curl -L https://raw.githubusercontent.com/krlmlr/r-snap/master/install.sh | sh
 
-test:
-	Rscript -e "update.packages(repos = 'http://cran.rstudio.com')"
+install:
+	Rscript -e "sessionInfo()"
 	Rscript -e "devtools::install_github('hadley/testthat')"
 	Rscript -e "options(repos = 'http://cran.rstudio.com'); devtools::install_deps(dependencies = TRUE)"
-	Rscript -e "devtools::check(document = FALSE, check_dir = '..', cleanup = FALSE)"
-	! egrep -A 5 "ERROR|WARNING|NOTE" ../*.Rcheck/00check.log
+
+test:
+	Rscript -e "devtools::check(document = FALSE, check_dir = '.', cleanup = FALSE)"
+	! egrep -A 5 "ERROR|WARNING|NOTE" *.Rcheck/00check.log
+
+covr:
+	Rscript -e 'if (!requireNamespace("covr")) devtools::install_github("jimhester/covr"); covr::codecov()'

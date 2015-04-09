@@ -1,0 +1,12 @@
+box: krlmlr/r-test
+build:
+  steps:
+    - script:
+        name: install
+        code: if ! make install; then fail "Install failed"; fi
+    - script:
+        name: test
+        code: if ! make test; then fail "Test failed"; fi
+    - script:
+        name: codecov
+        code: if ! make covr; then fail "Coverage failed"; fi
