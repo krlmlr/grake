@@ -7,7 +7,6 @@ build:
     - script:
         name: test
         code: if ! make test; then fail "Test failed"; fi
-  after-steps:
     - script:
         name: codecov
         code: if ! make covr; then fail "Coverage failed"; fi
