@@ -10,3 +10,6 @@ build:
     - script:
         name: codecov
         code: if ! make covr; then fail "Coverage failed"; fi
+    - script:
+        name: lint
+        code: if ! make lintr; then fail "Linting failed"; fi
