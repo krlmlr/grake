@@ -13,3 +13,8 @@ test_that('Compare ginv results', {
               rows, cols)
   expect_equal(MASS::ginv(X), cginv(X))
 })
+
+test_that('ginv error messages', {
+  expect_error(cginv(array(1:24, dim = 2:4)), "matrix")
+  expect_error(cginv(array(letters[1:6], dim = 2:3)), "numeric or complex")
+})
