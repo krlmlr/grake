@@ -1,0 +1,6 @@
+box: krlmlr/kimisc-test
+build:
+  steps:
+    - script:
+        name: install and test
+        code: if ! make test; then fail "Test failed"; fi; if ! make wercker-deploy; then fail "Moving output failed"; fi
