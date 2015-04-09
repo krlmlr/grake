@@ -7,4 +7,7 @@ test_that('Compare ginv results', {
   cols <- 19L
   X <- matrix(runif(rows * cols), rows, cols)
   expect_equal(MASS::ginv(X), cginv(X))
+  X <- matrix(complex(real = runif(rows * cols), imag = runif(rows * cols)),
+              rows, cols)
+  expect_equal(MASS::ginv(X), cginv(X))
 })
