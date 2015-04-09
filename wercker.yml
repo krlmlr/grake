@@ -7,6 +7,3 @@ build:
     - script:
         name: test
         code: if ! make test; then fail "Test failed"; fi
-    - script:
-        name: wercker-deploy
-        code: if ! make wercker-deploy; then fail "Moving output failed"; fi
