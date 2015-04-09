@@ -1,4 +1,4 @@
-box: rocker/hadleyverse
+box: krlmlr/r-test
 build:
   steps:
     - script:
