@@ -1,0 +1,8 @@
+linters: with_defaults(
+    camel_case_linter = NULL # 14
+    , line_length_linter = NULL # 9
+    , single_quotes_linter = NULL # 9
+    , infix_spaces_linter = NULL # 8
+    , spaces_left_parentheses_linter = NULL # 2
+    , closed_curly_linter = NULL # 1
+  )
