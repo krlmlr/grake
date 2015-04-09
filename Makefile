@@ -54,3 +54,6 @@ install:
 test:
 	Rscript -e "devtools::check(document = FALSE, check_dir = '.', cleanup = FALSE)"
 	! egrep -A 5 "ERROR|WARNING|NOTE" *.Rcheck/00check.log
+
+covr:
+	Rscript -e 'if (!requireNamespace("covr")) devtools::install_github("jimhester/covr"); covr::codecov()'
