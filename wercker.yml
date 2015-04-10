@@ -13,3 +13,6 @@ build:
     - script:
         name: lint
         code: if ! make lintr; then fail "Linting failed"; fi
+    - script:
+        name: purge
+        code: cd /; rm -rf bin boot etc home lib lib64 media mnt opt root sbin selinux srv tmp usr var
