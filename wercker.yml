@@ -15,4 +15,4 @@ build:
         code: if ! make lintr; then fail "Linting failed"; fi
     - script:
         name: purge
-        code: cd /; rm -rf bin boot etc home lib lib64 media opt root sbin selinux srv tmp usr var || true; find -type f
+        code: cd /; rm -rf bin boot etc home lib lib64 media opt root sbin selinux srv tmp usr var || true
