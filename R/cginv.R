@@ -6,8 +6,11 @@
 
 #' Generalized Inverse of a Matrix using a custom SVD
 #'
-#' Calculates the Moore-Penrose generalized inverse of a matrix X using a custom
+#' The \code{cginv} function
+#' calculates the Moore-Penrose generalized inverse of a matrix X using a custom
 #' implementation for computing the singular value decomposition.
+#' The \code{gginv} function creates a function with formals identical
+#' to those of \code{MASS::\link[MASS]{ginv}} that uses a given SVD implementation.
 #'
 #' The \code{svd} parameter is expected to adhere to the interface of
 #' \code{base::\link[base]{svd}}. It will be called as \code{svd(x)} (with the
@@ -49,4 +52,13 @@ cginv <- function(X, tol = sqrt(.Machine$double.eps), svd = NULL) {
     Xsvd$v[, Positive, drop = FALSE] %*%
       ((1/Xsvd$d[Positive]) * t(Xsvd$u[, Positive, drop = FALSE]))
   }
+}
+
+#' @rdname cginv
+#' @export
+gginv <- function(svd = NULL) {
+  if (is.null(svd)) {
+    svd <- base::svd
+  }
+  function(X, tol = sqrt(.Machine$double.eps)) cginv(X, tol, svd)
 }

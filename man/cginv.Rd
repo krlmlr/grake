@@ -2,9 +2,12 @@
 % Please edit documentation in R/cginv.R
 \name{cginv}
 \alias{cginv}
+\alias{gginv}
 \title{Generalized Inverse of a Matrix using a custom SVD}
 \usage{
 cginv(X, tol = sqrt(.Machine$double.eps), svd = NULL)
+
+gginv(svd = NULL)
 }
 \arguments{
 \item{X}{
@@ -22,8 +25,11 @@ A relative tolerance to detect zero singular values.
 A MP generalized inverse matrix for X.
 }
 \description{
-Calculates the Moore-Penrose generalized inverse of a matrix X using a custom
+The \code{cginv} function
+calculates the Moore-Penrose generalized inverse of a matrix X using a custom
 implementation for computing the singular value decomposition.
+The \code{gginv} function creates a function with formals identical
+to those of \code{MASS::\link[MASS]{ginv}} that uses a given SVD implementation.
 }
 \details{
 The \code{svd} parameter is expected to adhere to the interface of
