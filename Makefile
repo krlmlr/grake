@@ -66,3 +66,6 @@ staticdocs:
 
 wercker-build:
 	wercker build --docker-host=unix://var/run/docker.sock --no-remove
+
+wercker-deploy:
+	wercker deploy --docker-host=unix://var/run/docker.sock --no-remove
