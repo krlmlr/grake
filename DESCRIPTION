@@ -17,3 +17,4 @@ Imports:
 Suggests:
     testthat,
     sampling
+GitHub: https://github.com/grake/grake
