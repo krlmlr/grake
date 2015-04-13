@@ -6,3 +6,5 @@
 ^NEWS\.md\.tmpl$
 ^wercker\.yml$
 ^\.lintr$
+/Makefile
+/makeR
