@@ -6,9 +6,9 @@ git:
 master: git
 	test $$(git rev-parse --abbrev-ref HEAD) = "master"
 
-inst/web:
-	git branch gh-pages origin/gh-pages || true
-	git clone --branch gh-pages . inst/web
+inst/web: git master
+	git clone . inst/web
+	cd inst/web && if ! git checkout gh-pages; then git checkout --orphan gh-pages && git commit --allow-empty -m "initial"; fi
 
 gh-pages-build: staticdocs
 	cd inst/web && git fetch && git merge --no-edit origin/master --strategy ours && git add . && git commit --amend --no-edit && git push -f origin gh-pages
