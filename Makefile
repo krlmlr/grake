@@ -14,7 +14,7 @@ gh-pages-build: staticdocs
 	cd inst/web && git fetch && git merge --no-edit origin/master --strategy ours && git add . && git commit --amend --no-edit && git push -f origin gh-pages
 
 gh-pages-push:
-	git push origin gh-pages
+	git push -u origin gh-pages
 
 rd: git
 	Rscript -e "library(methods); devtools::document()"
