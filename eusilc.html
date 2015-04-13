@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>eusilc. grake 0.0-1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">grake 0.0-1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Synthetic EU-SILC survey data</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>eusilc</div></pre>
+        
+    <div class="Format">
+      <h2>Format</h2>
+
+      <p>A data frame with 14827 observations on the following 28 variables.
+<dl>
+  <dt><code>db030</code></dt><dd>integer; the household ID.</dd></p>
+  
+      <p><dt><code>hsize</code></dt><dd>integer; the number of persons in the household.</dd></p>
+  
+      <p><dt><code>db040</code></dt><dd>factor; the federal state in which the household is
+    located (levels <code>Burgenland</code>, <code>Carinthia</code>,
+    <code>Lower Austria</code>, <code>Salzburg</code>, <code>Styria</code>, <code>Tyrol</code>,
+    <code>Upper Austria</code>, <code>Vienna</code> and <code>Vorarlberg</code>).</dd></p>
+  
+      <p><dt><code>rb030</code></dt><dd>integer; the personal ID.</dd></p>
+  
+      <p><dt><code>age</code></dt><dd>integer; the person's age.</dd></p>
+  
+      <p><dt><code>rb090</code></dt><dd>factor; the person's gender (levels <code>male</code> and
+    <code>female</code>).</dd></p>
+  
+      <p><dt><code>pl030</code></dt><dd>factor; the person's economic status (levels
+    <code>1</code> = working full time, <code>2</code> = working part time, <code>3</code> =
+    unemployed, <code>4</code> = pupil, student, further training or unpaid work
+    experience or in compulsory military or community service, <code>5</code> = in
+    retirement or early retirement or has given up business, <code>6</code> =
+    permanently disabled or/and unfit to work or other inactive person,
+    <code>7</code> = fulfilling domestic tasks and care responsibilities).</dd></p>
+  
+      <p><dt><code>pb220a</code></dt><dd>factor; the person's citizenship (levels <code>AT</code>,
+    <code>EU</code> and <code>Other</code>).</dd></p>
+  
+      <p><dt><code>py010n</code></dt><dd>numeric; employee cash or near cash income (net).</dd></p>
+  
+      <p><dt><code>py050n</code></dt><dd>numeric; cash benefits or losses from self-employment
+    (net).</dd></p>
+  
+      <p><dt><code>py090n</code></dt><dd>numeric; unemployment benefits (net).</dd></p>
+  
+      <p><dt><code>py100n</code></dt><dd>numeric; old-age benefits (net).</dd></p>
+  
+      <p><dt><code>py110n</code></dt><dd>numeric; survivor's benefits (net).</dd></p>
+  
+      <p><dt><code>py120n</code></dt><dd>numeric; sickness benefits (net).</dd></p>
+  
+      <p><dt><code>py130n</code></dt><dd>numeric; disability benefits (net).</dd></p>
+  
+      <p><dt><code>py140n</code></dt><dd>numeric; education-related allowances (net).</dd></p>
+  
+      <p><dt><code>hy040n</code></dt><dd>numeric; income from rental of a property or land
+    (net).</dd></p>
+  
+      <p><dt><code>hy050n</code></dt><dd>numeric; family/children related allowances (net).</dd></p>
+  
+      <p><dt><code>hy070n</code></dt><dd>numeric; housing allowances (net).</dd></p>
+  
+      <p><dt><code>hy080n</code></dt><dd>numeric; regular inter-household cash transfer
+    received (net).</dd></p>
+  
+      <p><dt><code>hy090n</code></dt><dd>numeric; interest, dividends, profit from capital
+    investments in unincorporated business (net).</dd></p>
+  
+      <p><dt><code>hy110n</code></dt><dd>numeric; income received by people aged under 16
+    (net).</dd></p>
+  
+      <p><dt><code>hy130n</code></dt><dd>numeric; regular inter-household cash transfer paid
+    (net).</dd></p>
+  
+      <p><dt><code>hy145n</code></dt><dd>numeric; repayments/receipts for tax adjustment (net).</dd></p>
+  
+      <p><dt><code>eqSS</code></dt><dd>numeric; the equivalized household size according to the
+    modified OECD scale.</dd></p>
+  
+      <p><dt><code>eqIncome</code></dt><dd>numeric; a slightly simplified version of the
+    equivalized household income.</dd></p>
+  
+      <p><dt><code>db090</code></dt><dd>numeric; the household sample weights.</dd></p>
+  
+      <p><dt><code>rb050</code></dt><dd>numeric; the personal sample weights.</dd></p>
+  
+      <p></dl></p>
+  
+    </div>
+
+    <div class="Synthetic EU-SILC survey data">
+      <h2>Synthetic EU-SILC survey data</h2>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>This data set is synthetically generated from real Austrian EU-SILC (European
+Union Statistics on Income and Living Conditions) data.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The data set consists of 6000 households and is used in the examples of package
+<code>laeken</code>.  Note that this is a synthetic data set based on original
+EU-SILC survey data.</p>
+  
+      <p>Only a few of the large number of variables in the original survey are included
+in this example data set.  The variable names are rather cryptic codes, but
+these are the standardized names used by the statistical agencies.  Furthermore,
+the variables <code>hsize</code>, <code>age</code>, <code>eqSS</code> and <code>eqIncome</code> are not
+included in the standardized format of EU-SILC data, but have been derived from
+other variables for convenience.  Moreover, some very sparse income components
+were not included in the the generation of this synthetic data set. Thus the
+equivalized household income is computed from the available income components.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>A. Alfons and M. Templ (2013) Estimation of Social Exclusion Indicators from
+Complex Surveys: The  Package <span class = "pkg">laeken</span>.  <em>Journal of Statistical
+Software</em>, <b>54</b>(15), 1--25.  URL <a href = 'http://www.jstatsoft.org/v54/i15/'>http://www.jstatsoft.org/v54/i15/</a></p>
+  
+      <p>A. Alfons, M. Templ, P. Filzmoser (2011) Simulation of close-to-reality
+population data for household surveys with application to EU-SILC.
+<em>Statistical Methods and Applications</em>,
+vol 20 (3), 383-407.</p>
+  
+      <p>Eurostat (2004) Description of target variables: Cross-sectional and
+longitudinal. <em>EU-SILC 065/04</em>, Eurostat.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(eusilc)
+summary(eusilc)
+</div>
+<div class='output'>     db030          hsize                 db040          rb030       
+ Min.   :   1   Min.   :1.000   Upper Austria:2805   Min.   :   101  
+ 1st Qu.:1516   1st Qu.:2.000   Lower Austria:2804   1st Qu.:151602  
+ Median :2993   Median :3.000   Vienna       :2322   Median :299304  
+ Mean   :3005   Mean   :3.234   Styria       :2295   Mean   :300471  
+ 3rd Qu.:4493   3rd Qu.:4.000   Tyrol        :1317   3rd Qu.:449302  
+ Max.   :6000   Max.   :9.000   Carinthia    :1078   Max.   :600002  
+                                (Other)      :2206                   
+      age          rb090          pl030        pb220a          py010n      
+ Min.   :-1.0   male  :7267   1      :5162   AT   :11073   Min.   :     0  
+ 1st Qu.:21.0   female:7560   5      :3146   EU   :  283   1st Qu.:     0  
+ Median :39.0                 7      :1207   Other:  751   Median :  2566  
+ Mean   :39.2                 2      :1160   NA&#39;s : 2720   Mean   :  9121  
+ 3rd Qu.:56.0                 4      : 736                 3rd Qu.: 16896  
+ Max.   :97.0                 (Other): 696                 Max.   :151894  
+                              NA&#39;s   :2720                 NA&#39;s   :2720    
+     py050n           py090n            py100n          py110n        
+ Min.   : -1653   Min.   :    0.0   Min.   :    0   Min.   :    0.00  
+ 1st Qu.:     0   1st Qu.:    0.0   1st Qu.:    0   1st Qu.:    0.00  
+ Median :     0   Median :    0.0   Median :    0   Median :    0.00  
+ Mean   :  1105   Mean   :  412.5   Mean   : 3641   Mean   :   72.66  
+ 3rd Qu.:     0   3rd Qu.:    0.0   3rd Qu.:    0   3rd Qu.:    0.00  
+ Max.   :112073   Max.   :27354.3   Max.   :75837   Max.   :21281.02  
+ NA&#39;s   :2720     NA&#39;s   :2720      NA&#39;s   :2720    NA&#39;s   :2720      
+     py120n             py130n          py140n             hy040n        
+ Min.   :    0.00   Min.   :    0   Min.   :    0.00   Min.   :     0.0  
+ 1st Qu.:    0.00   1st Qu.:    0   1st Qu.:    0.00   1st Qu.:     0.0  
+ Median :    0.00   Median :    0   Median :    0.00   Median :     0.0  
+ Mean   :   51.05   Mean   :  363   Mean   :   39.65   Mean   :   772.8  
+ 3rd Qu.:    0.00   3rd Qu.:    0   3rd Qu.:    0.00   3rd Qu.:     0.0  
+ Max.   :31472.40   Max.   :52480   Max.   :19440.37   Max.   :118083.6  
+ NA&#39;s   :2720       NA&#39;s   :2720    NA&#39;s   :2720                         
+     hy050n          hy070n            hy080n             hy090n         
+ Min.   :    0   Min.   :   0.00   Min.   :     0.0   Min.   :     0.00  
+ 1st Qu.:    0   1st Qu.:   0.00   1st Qu.:     0.0   1st Qu.:     0.50  
+ Median : 1563   Median :   0.00   Median :     0.0   Median :    62.65  
+ Mean   : 2995   Mean   :  87.96   Mean   :   652.3   Mean   :   468.36  
+ 3rd Qu.: 4823   3rd Qu.:   0.00   3rd Qu.:     0.0   3rd Qu.:   230.48  
+ Max.   :96449   Max.   :4871.81   Max.   :107951.9   Max.   :109857.80  
+                                                                         
+     hy110n             hy130n            hy145n              eqSS      
+ Min.   :    0.00   Min.   :    0.0   Min.   :-28690.3   Min.   :1.000  
+ 1st Qu.:    0.00   1st Qu.:    0.0   1st Qu.:  -295.3   1st Qu.:1.500  
+ Median :    0.00   Median :    0.0   Median :     0.0   Median :2.000  
+ Mean   :   32.73   Mean   :  328.6   Mean   :  -132.5   Mean   :1.984  
+ 3rd Qu.:    0.00   3rd Qu.:    0.0   3rd Qu.:     0.0   3rd Qu.:2.400  
+ Max.   :13627.23   Max.   :49285.3   Max.   : 27018.1   Max.   :4.500  
+                                                                        
+    eqIncome          db090            rb050       
+ Min.   :     0   Min.   : 357.9   Min.   : 357.9  
+ 1st Qu.: 13463   1st Qu.: 492.9   1st Qu.: 492.9  
+ Median : 18081   Median : 527.6   Median : 527.6  
+ Mean   : 19907   Mean   : 551.8   Mean   : 551.8  
+ 3rd Qu.: 24194   3rd Qu.: 614.7   3rd Qu.: 614.7  
+ Max.   :152208   Max.   :1032.0   Max.   :1032.0  
+                                                   
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>eusilc</li>
+    </ul>
+    <ul>
+      <li>datasets</li>
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

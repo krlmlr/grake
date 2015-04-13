@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>calibWeights. grake 0.0-1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+Andreas Alfons
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">grake 0.0-1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Calibrate sample weights</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>calibWeights(X, d, totals, q&nbsp;=&nbsp;NULL, method&nbsp;=&nbsp;c("raking", "linear", "logit"), bounds&nbsp;=&nbsp;c(0, 10), maxit&nbsp;=&nbsp;500, tol&nbsp;=&nbsp;1e-06, eps&nbsp;=&nbsp;.Machine$double.eps)</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>X</dt>
+      <dd>a matrix of binary calibration variables (see
+<code><a href='calibVars.html'>calibVars</a></code>).</dd>
+      <dt>d</dt>
+      <dd>a numeric vector giving the initial sample weights.</dd>
+      <dt>totals</dt>
+      <dd>a numeric vector of population totals corresponding to the
+calibration variables in <code>X</code>.</dd>
+      <dt>q</dt>
+      <dd>a numeric vector of positive values accounting for
+heteroscedasticity.  Small values reduce the variation of the
+<em>g</em>-weights.</dd>
+      <dt>method</dt>
+      <dd>a character string specifying the calibration method to be
+used.  Possible values are <code>"linear"</code> for the linear method,
+<code>"raking"</code> for the multiplicative method known as raking and
+<code>"logit"</code> for the logit method.</dd>
+      <dt>bounds</dt>
+      <dd>a numeric vector of length two giving bounds for the g-weights
+to be used in the logit method.  The first value gives the lower bound (which
+must be smaller than or equal to 1) and the second value gives the upper
+bound (which must be larger than or equal to 1).</dd>
+      <dt>maxit</dt>
+      <dd>a numeric value giving the maximum number of iterations.</dd>
+      <dt>tol</dt>
+      <dd>the desired accuracy for the iterative procedure.</dd>
+      <dt>eps</dt>
+      <dd>the desired accuracy for computing the Moore-Penrose generalized
+inverse (see <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>).</dd>
+    </dl>
+    
+    <div class="Calibrate sample weights">
+      <h2>Calibrate sample weights</h2>
+
+    </div>
+
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A numeric vector containing the <em>g</em>-weights.
+</dl></p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Calibrate sample weights according to known marginal population totals.
+Based on initial sample weights, the so-called <em>g</em>-weights are computed
+by generalized raking procedures.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>The final sample weights need to be computed by multiplying the resulting
+<em>g</em>-weights with the initial sample weights.</p>
+  
+    </div>
+
+    <div class="Note">
+      <h2>Note</h2>
+
+      <p>This is a faster implementation of parts of
+<code><a href='http://www.inside-r.org/packages/cran/sampling/docs/calib'>calib</a></code> from package <code>sampling</code>.  Note that the
+default calibration method is raking and that the truncated linear method is
+not yet implemented.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Deville, J.-C. and Särndal, C.-E. (1992)
+Calibration estimators in survey sampling. <em>Journal of the American
+Statistical Association</em>, <b>87</b>(418), 376--382.</p>
+  
+      <p>Deville, J.-C., Särndal, C.-E. and Sautory, O. (1993)
+Generalized raking procedures in survey sampling. <em>Journal of the
+American Statistical Association</em>, <b>88</b>(423), 1013--1020.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>data(eusilc)
+# construct auxiliary 0/1 variables for genders
+aux &lt;- calibVars(eusilc$rb090)
+# population totals
+totals &lt;- c(3990798, 4191431)
+# compute g-weights
+g &lt;- calibWeights(aux, eusilc$rb050, totals)
+# compute final weights
+weights &lt;- g * eusilc$rb050
+summary(weights)
+</div>
+<div class='output'>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  356.9   492.5   529.1   551.8   613.0  1035.0 
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>calibWeights</li>
+    </ul>
+    <ul>
+      <li>survey</li>
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='calibVars.html'>calibVars</a></code>
+
+    
+    <h2>Author</h2>
+    
+Andreas Alfons
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
