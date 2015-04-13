@@ -7,6 +7,7 @@ master: git
 	test $$(git rev-parse --abbrev-ref HEAD) = "master"
 
 inst/web: git master
+	rm -rf inst/web
 	git clone . inst/web
 	cd inst/web && if ! git checkout gh-pages; then git checkout --orphan gh-pages && git commit --allow-empty -m "initial"; fi
 
