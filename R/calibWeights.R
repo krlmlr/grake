@@ -31,9 +31,9 @@
 #' must be smaller than or equal to 1) and the second value gives the upper
 #' bound (which must be larger than or equal to 1).
 #' @param maxit a numeric value giving the maximum number of iterations.
-#' @param tol the desired accuracy for the iterative procedure.
-#' @param eps the desired accuracy for computing the Moore-Penrose generalized
-#' inverse (see \code{\link[MASS]{ginv}}).
+#' @param ginv a function that computes the Moore-Penrose generalized
+#' inverse (default: \code{\link[MASS]{ginv}})
+#' @param tol,eps passed to \code{ginv}.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
@@ -69,11 +69,12 @@
 #' summary(weights)
 #'
 #' @export
-#' @importFrom MASS ginv
-
+#' @import MASS
 calibWeights <- function(X, d, totals, q = NULL,
         method = c("raking", "linear", "logit"),
-        bounds = c(0, 10), maxit = 500, tol = 1e-06,
+        bounds = c(0, 10), maxit = 500,
+        ginv = MASS::ginv,
+        tol = 1e-06,
         eps = .Machine$double.eps) {
 
     ## initializations and error handling
