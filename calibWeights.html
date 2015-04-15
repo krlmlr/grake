@@ -43,7 +43,7 @@ Andreas Alfons
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>calibWeights(X, d, totals, q&nbsp;=&nbsp;NULL, method&nbsp;=&nbsp;c("raking", "linear", "logit"), bounds&nbsp;=&nbsp;c(0, 10), maxit&nbsp;=&nbsp;500, tol&nbsp;=&nbsp;1e-06, eps&nbsp;=&nbsp;.Machine$double.eps)</div></pre>
+    <pre><div>calibWeights(X, d, totals, q&nbsp;=&nbsp;NULL, method&nbsp;=&nbsp;c("raking", "linear", "logit"), bounds&nbsp;=&nbsp;c(0, 10), maxit&nbsp;=&nbsp;500, ginv&nbsp;=&nbsp;MASS::ginv, tol&nbsp;=&nbsp;1e-06, eps&nbsp;=&nbsp;.Machine$double.eps)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
@@ -71,11 +71,11 @@ must be smaller than or equal to 1) and the second value gives the upper
 bound (which must be larger than or equal to 1).</dd>
       <dt>maxit</dt>
       <dd>a numeric value giving the maximum number of iterations.</dd>
-      <dt>tol</dt>
-      <dd>the desired accuracy for the iterative procedure.</dd>
-      <dt>eps</dt>
-      <dd>the desired accuracy for computing the Moore-Penrose generalized
-inverse (see <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>).</dd>
+      <dt>ginv</dt>
+      <dd>a function that computes the Moore-Penrose generalized
+inverse (default: <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>)</dd>
+      <dt>tol,eps</dt>
+      <dd>passed to <code>ginv</code>.</dd>
     </dl>
     
     <div class="Calibrate sample weights">
