@@ -32,7 +32,8 @@
 #' bound (which must be larger than or equal to 1).
 #' @param maxit a numeric value giving the maximum number of iterations.
 #' @param ginv a function that computes the Moore-Penrose generalized
-#' inverse (default: \code{\link[MASS]{ginv}})
+#' inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
+#' use a function that computes a "regular" matrix inverse such as \code{{solve.default}}.
 #' @param tol,eps passed to \code{ginv}.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
@@ -64,9 +65,12 @@
 #' totals <- c(3990798, 4191431)
 #' # compute g-weights
 #' g <- calibWeights(aux, eusilc$rb050, totals)
+#'
 #' # compute final weights
 #' weights <- g * eusilc$rb050
 #' summary(weights)
+#'
+#' g2 <- calibWeights(aux, eusilc$rb050, totals, method = "linear", ginv = solve)
 #'
 #' @export
 #' @import MASS
