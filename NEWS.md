@@ -1,3 +1,6 @@
+v0.0-2 (2015-04-15)
+===
+
 - New functions `cginv` (generalized inverse with a pluggable `svd` implementation)
   and `gginv` (construct a `ginv` function given an `svd` implementation)
 - New argument `ginv` to `calibWeights` allows using a custom `ginv` function,
