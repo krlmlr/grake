@@ -73,7 +73,8 @@ bound (which must be larger than or equal to 1).</dd>
       <dd>a numeric value giving the maximum number of iterations.</dd>
       <dt>ginv</dt>
       <dd>a function that computes the Moore-Penrose generalized
-inverse (default: <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>)</dd>
+inverse (default: <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>). In some cases it is possible to
+use a function that computes a "regular" matrix inverse such as <code>{solve.default}</code>.</dd>
       <dt>tol,eps</dt>
       <dd>passed to <code>ginv</code>.</dd>
     </dl>
@@ -140,12 +141,16 @@ aux &lt;- calibVars(eusilc$rb090)
 totals &lt;- c(3990798, 4191431)
 # compute g-weights
 g &lt;- calibWeights(aux, eusilc$rb050, totals)
+
 # compute final weights
 weights &lt;- g * eusilc$rb050
 summary(weights)
 </div>
 <div class='output'>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   356.9   492.5   529.1   551.8   613.0  1035.0 
+</div>
+<div class='input'>
+g2 &lt;- calibWeights(aux, eusilc$rb050, totals, method = &quot;linear&quot;, ginv = solve)
 </div></pre>
   </div>
   <div class="span4">
