@@ -12,6 +12,7 @@ test_that('Compare ginv results', {
   X <- matrix(complex(real = runif(rows * cols), imag = runif(rows * cols)),
               rows, cols)
   expect_equal(MASS::ginv(X), cginv(X))
+  expect_equal(MASS::ginv(X), gginv()(X))
 })
 
 test_that('ginv error messages', {
