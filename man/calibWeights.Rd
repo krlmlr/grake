@@ -35,7 +35,8 @@ bound (which must be larger than or equal to 1).}
 \item{maxit}{a numeric value giving the maximum number of iterations.}
 
 \item{ginv}{a function that computes the Moore-Penrose generalized
-inverse (default: \code{\link[MASS]{ginv}})}
+inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
+use a function that computes a "regular" matrix inverse such as \code{{solve.default}}.}
 
 \item{tol,eps}{passed to \code{ginv}.}
 }
@@ -65,9 +66,12 @@ aux <- calibVars(eusilc$rb090)
 totals <- c(3990798, 4191431)
 # compute g-weights
 g <- calibWeights(aux, eusilc$rb050, totals)
+
 # compute final weights
 weights <- g * eusilc$rb050
 summary(weights)
+
+g2 <- calibWeights(aux, eusilc$rb050, totals, method = "linear", ginv = solve)
 }
 \author{
 Andreas Alfons

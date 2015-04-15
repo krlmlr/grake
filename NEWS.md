@@ -1,3 +1,9 @@
+- New functions `cginv` (generalized inverse with a pluggable `svd` implementation)
+  and `gginv` (construct a `ginv` function given an `svd` implementation)
+- New argument `ginv` to `calibWeights` allows using a custom `ginv` function,
+  and in some cases even a function that only inverts quadratic non-singular matrices
+  such as `solve`
+
 v0.0-1 (2014-11-26)
 ===
 
