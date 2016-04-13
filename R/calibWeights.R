@@ -64,14 +64,11 @@
 #' Xs <- matrix(runif(obs * vars), nrow = obs)
 #' d <- runif(obs) / obs
 #' totals <- rep(1, vars)
-#' g <- calibWeights(Xs, d, totals, method = "linear", ginv = solve)
-#' g2 <- calibWeights(Xs, d, totals, method = "raking")
+#' g <- dss(Xs, d, totals, method = "linear", ginv = solve)
+#' g2 <- dss(Xs, d, totals, method = "raking")
 #' @export
-calibWeights <- function(X, d, totals, q = NULL,
-        method = c("raking", "linear", "logit"),
-        bounds = c(0, 10), maxit = 500,
-        ginv = gginv(),
-        tol = 1e-06)
+dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
+                bounds = c(0, 10), maxit = 500, ginv = gginv(), tol = 1e-06)
 {
     ## initializations and error handling
     X <- as.matrix(X)
