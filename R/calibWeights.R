@@ -34,7 +34,7 @@
 #'   inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
 #'   use a function that computes a "regular" matrix inverse such as
 #'   \code{{solve.default}}.
-#' @param tol passed to \code{ginv}.
+#' @param tol,eps passed to \code{ginv}.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
@@ -44,8 +44,6 @@
 #' not yet implemented.
 #'
 #' @author Andreas Alfons
-#'
-#' @seealso \code{\link{calibVars}}
 #'
 #' @references Deville, J.-C. and \enc{Särndal}{Saerndal}, C.-E. (1992)
 #' Calibration estimators in survey sampling. \emph{Journal of the American
