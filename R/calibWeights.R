@@ -58,20 +58,13 @@
 #' @keywords survey
 #'
 #' @examples
-#' data(eusilc)
-#' # construct auxiliary 0/1 variables for genders
-#' aux <- calibVars(eusilc$rb090)
-#' # population totals
-#' totals <- c(3990798, 4191431)
-#' # compute g-weights
-#' g <- calibWeights(aux, eusilc$rb050, totals)
-#'
-#' # compute final weights
-#' weights <- g * eusilc$rb050
-#' summary(weights)
-#'
-#' g2 <- calibWeights(aux, eusilc$rb050, totals, method = "linear", ginv = solve)
-#'
+#' obs <- 1000
+#' vars <- 100
+#' Xs <- matrix(runif(obs * vars), nrow = obs)
+#' d <- runif(obs) / obs
+#' totals <- rep(1, vars)
+#' g <- calibWeights(Xs, d, totals, method = "linear", ginv = solve)
+#' g2 <- calibWeights(Xs, d, totals, method = "raking")
 #' @export
 #' @import MASS
 calibWeights <- function(X, d, totals, q = NULL,
