@@ -1,3 +1,15 @@
+# grake 0.0-3 (2016-04-13)
+
+- Remove `eps` argument to `calibWeights()`.
+- Use `gginv()` instead of `MASS::ginv()`.
+- Remove `cginv()`.
+- The function returned by `gginv()` now uses a hard-coded tolerance and has been somewhat optimized.
+- Remove `calibVars()` (#8).
+- Update documentation.
+- Use `rflow`.
+- Update wercker configuration.
+
+
 v0.0-2 (2015-04-15)
 ===
 
