@@ -18,3 +18,4 @@ Suggests:
     testthat,
     sampling
 GitHub: https://github.com/grake/grake
+RoxygenNote: 5.0.1

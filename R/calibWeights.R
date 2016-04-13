@@ -14,26 +14,26 @@
 #'
 #' @encoding utf8
 #'
-#' @param X a matrix of binary calibration variables (see
-#' \code{\link{calibVars}}).
-#' @param d a numeric vector giving the initial sample weights.
+#' @param X a matrix of calibration variables.
+#' @param d a numeric vector giving the initial sample (or design) weights.
 #' @param totals a numeric vector of population totals corresponding to the
-#' calibration variables in \code{X}.
+#'   calibration variables in \code{X}.
 #' @param q a numeric vector of positive values accounting for
-#' heteroscedasticity.  Small values reduce the variation of the
-#' \emph{g}-weights.
+#'   heteroscedasticity.  Small values reduce the variation of the
+#'   \emph{g}-weights.
 #' @param method a character string specifying the calibration method to be
-#' used.  Possible values are \code{"linear"} for the linear method,
-#' \code{"raking"} for the multiplicative method known as raking and
-#' \code{"logit"} for the logit method.
+#'   used.  Possible values are \code{"linear"} for the linear method,
+#'   \code{"raking"} for the multiplicative method known as raking and
+#'   \code{"logit"} for the logit method.
 #' @param bounds a numeric vector of length two giving bounds for the g-weights
-#' to be used in the logit method.  The first value gives the lower bound (which
-#' must be smaller than or equal to 1) and the second value gives the upper
-#' bound (which must be larger than or equal to 1).
+#'   to be used in the logit method.  The first value gives the lower bound (which
+#'   must be smaller than or equal to 1) and the second value gives the upper
+#'   bound (which must be larger than or equal to 1).
 #' @param maxit a numeric value giving the maximum number of iterations.
 #' @param ginv a function that computes the Moore-Penrose generalized
-#' inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
-#' use a function that computes a "regular" matrix inverse such as \code{{solve.default}}.
+#'   inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
+#'   use a function that computes a "regular" matrix inverse such as
+#'   \code{{solve.default}}.
 #' @param tol,eps passed to \code{ginv}.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
@@ -44,8 +44,6 @@
 #' not yet implemented.
 #'
 #' @author Andreas Alfons
-#'
-#' @seealso \code{\link{calibVars}}
 #'
 #' @references Deville, J.-C. and \enc{Särndal}{Saerndal}, C.-E. (1992)
 #' Calibration estimators in survey sampling. \emph{Journal of the American
@@ -58,20 +56,13 @@
 #' @keywords survey
 #'
 #' @examples
-#' data(eusilc)
-#' # construct auxiliary 0/1 variables for genders
-#' aux <- calibVars(eusilc$rb090)
-#' # population totals
-#' totals <- c(3990798, 4191431)
-#' # compute g-weights
-#' g <- calibWeights(aux, eusilc$rb050, totals)
-#'
-#' # compute final weights
-#' weights <- g * eusilc$rb050
-#' summary(weights)
-#'
-#' g2 <- calibWeights(aux, eusilc$rb050, totals, method = "linear", ginv = solve)
-#'
+#' obs <- 1000
+#' vars <- 100
+#' Xs <- matrix(runif(obs * vars), nrow = obs)
+#' d <- runif(obs) / obs
+#' totals <- rep(1, vars)
+#' g <- calibWeights(Xs, d, totals, method = "linear", ginv = solve)
+#' g2 <- calibWeights(Xs, d, totals, method = "raking")
 #' @export
 #' @import MASS
 calibWeights <- function(X, d, totals, q = NULL,
