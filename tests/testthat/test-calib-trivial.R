@@ -7,7 +7,7 @@ test_that("Calibrating a unit matrix against a unit vector", {
   X <- diag(N)
   d <- rep(1, N)
   totals <- rep(1, N)
-  g <- calibWeights(X, d, totals)
+  g <- dss(X, d, totals)
   expect_equal(g, totals)
 })
 
@@ -17,8 +17,8 @@ test_that("Calibrating a unit matrix against a vector with random totals", {
   d <- rep(1, N)
   totals <- runif(N)
 
-  for (method in eval(formals(calibWeights)$method)) {
-    g <- calibWeights(X, d, totals, method = method)
+  for (method in eval(formals(dss)$method)) {
+    g <- dss(X, d, totals, method = method)
     expect_equal(g, totals, info = method)
   }
 })
@@ -31,14 +31,14 @@ test_that("Test non-convergence", {
   d <- rep(1, N)
   totals <- c(2, rep(1, N - 1))
 
-  for (method in eval(formals(calibWeights)$method)) {
+  for (method in eval(formals(dss)$method)) {
     if (method == "linear") {
-      g <- calibWeights(X, d, totals, method = method)
+      g <- dss(X, d, totals, method = method)
       expect_equal(as.vector(g %*% X), totals, info = method)
       expect_true(any(g < 0))
     } else {
       expect_warning(
-        g <- calibWeights(X, d, totals, method = method),
+        g <- dss(X, d, totals, method = method),
         "no convergence")
       expect_equal(g, NULL)
     }
@@ -53,7 +53,7 @@ test_that("Calibrating a unit matrix against a unit vector with bounds, failing"
   bounds <- c(0.9, 1.1)
 
   expect_warning(
-    g <- calibWeights(X, d, totals, method = "logit", bounds = bounds),
+    g <- dss(X, d, totals, method = "logit", bounds = bounds),
     "no convergence")
   expect_equal(g, NULL)
 })

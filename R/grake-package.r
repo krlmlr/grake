@@ -1,5 +1,2 @@
-#' grake.
-#'
-#' @name grake
-#' @docType package
-NULL
+#' @seealso dss, gginv
+"_PACKAGE"
