@@ -28,7 +28,8 @@
 #' @param bounds a numeric vector of length two giving bounds for the g-weights
 #'   to be used in the logit method.  The first value gives the lower bound (which
 #'   must be smaller than or equal to 1) and the second value gives the upper
-#'   bound (which must be larger than or equal to 1).
+#'   bound (which must be larger than or equal to 1).  If \code{NULL}, the
+#'   bounds are set to \code{c(0, 10)}.
 #' @param maxit a numeric value giving the maximum number of iterations.
 #' @param ginv a function that computes the Moore-Penrose generalized
 #'   inverse (default: an optimized version of \code{\link[MASS]{ginv}}). In
@@ -68,7 +69,7 @@
 #' g2 <- dss(Xs, d, totals, method = "raking")
 #' @export
 dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
-                bounds = c(0, 10), maxit = 500, ginv = gginv(), tol = 1e-06)
+                bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06)
 {
     ## initializations and error handling
     X <- as.matrix(X)
@@ -137,6 +138,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
         } else {
             ## logit (L, U) method
             ## error handling for bounds
+            if (is.null(bounds)) bounds <- c(0, 10)
             if(length(bounds) < 2) stop("'bounds' must be a vector of length 2")
             else bounds <- bounds[1:2]
             if(bounds[1] >= 1) stop("the lower bound must be smaller than 1")
