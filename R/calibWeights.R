@@ -34,7 +34,9 @@
 #'   inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
 #'   use a function that computes a "regular" matrix inverse such as
 #'   \code{{solve.default}}.
-#' @param tol,eps passed to \code{ginv}.
+#' @param tol relative tolerance; convergence is achieved if the difference of
+#'   all residuals (relative to the corresponding total) is smaller than this
+#'   tolerance.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
