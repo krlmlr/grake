@@ -8,8 +8,6 @@ Authors@R: c( person("Kirill", "Müller", role = c("ctb", "cre"), email = "krlml
 Description: This package implements functions for generalized raking as
     described in Deville et al. (1993): "Generalized raking procedures in survey
     sampling".  The code strives to provide performance and ease of use.
-Depends:
-    R (>= 3.1.2)
 License: GPL-3
 LazyData: true
 Suggests:
