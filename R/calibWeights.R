@@ -31,8 +31,9 @@
 #'   bound (which must be larger than or equal to 1).
 #' @param maxit a numeric value giving the maximum number of iterations.
 #' @param ginv a function that computes the Moore-Penrose generalized
-#'   inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
-#'   use a function that computes a "regular" matrix inverse such as
+#'   inverse (default: an optimized version of \code{\link[MASS]{ginv}}). In
+#'   some cases it is possible to speed up the process by using
+#'   a function that computes a "regular" matrix inverse such as
 #'   \code{{solve.default}}.
 #' @param tol relative tolerance; convergence is achieved if the difference of
 #'   all residuals (relative to the corresponding total) is smaller than this
@@ -66,11 +67,10 @@
 #' g <- calibWeights(Xs, d, totals, method = "linear", ginv = solve)
 #' g2 <- calibWeights(Xs, d, totals, method = "raking")
 #' @export
-#' @import MASS
 calibWeights <- function(X, d, totals, q = NULL,
         method = c("raking", "linear", "logit"),
         bounds = c(0, 10), maxit = 500,
-        ginv = MASS::ginv,
+        ginv = gginv(),
         tol = 1e-06)
 {
     ## initializations and error handling
