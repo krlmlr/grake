@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>calibWeights. grake 0.0-2</title>
+<title>calibWeights. grake 0.0-3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="
 Andreas Alfons
@@ -16,13 +16,25 @@ Andreas Alfons
 <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
   </head>
 
   <body>
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">grake 0.0-2</a>
+      <a class="brand" href="#">grake 0.0-3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -43,15 +55,14 @@ Andreas Alfons
 <div class="row">
   <div class="span8">
     <h2>Usage</h2>
-    <pre><div>calibWeights(X, d, totals, q&nbsp;=&nbsp;NULL, method&nbsp;=&nbsp;c("raking", "linear", "logit"), bounds&nbsp;=&nbsp;c(0, 10), maxit&nbsp;=&nbsp;500, ginv&nbsp;=&nbsp;MASS::ginv, tol&nbsp;=&nbsp;1e-06, eps&nbsp;=&nbsp;.Machine$double.eps)</div></pre>
+    <pre><div>calibWeights(X, d, totals, q&nbsp;=&nbsp;NULL, method&nbsp;=&nbsp;c("raking", "linear", "logit"), bounds&nbsp;=&nbsp;c(0, 10), maxit&nbsp;=&nbsp;500, ginv&nbsp;=&nbsp;gginv(), tol&nbsp;=&nbsp;1e-06)</div></pre>
     
     <h2>Arguments</h2>
     <dl>
       <dt>X</dt>
-      <dd>a matrix of binary calibration variables (see
-<code><a href='calibVars.html'>calibVars</a></code>).</dd>
+      <dd>a matrix of calibration variables.</dd>
       <dt>d</dt>
-      <dd>a numeric vector giving the initial sample weights.</dd>
+      <dd>a numeric vector giving the initial sample (or design) weights.</dd>
       <dt>totals</dt>
       <dd>a numeric vector of population totals corresponding to the
 calibration variables in <code>X</code>.</dd>
@@ -73,10 +84,14 @@ bound (which must be larger than or equal to 1).</dd>
       <dd>a numeric value giving the maximum number of iterations.</dd>
       <dt>ginv</dt>
       <dd>a function that computes the Moore-Penrose generalized
-inverse (default: <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>). In some cases it is possible to
-use a function that computes a "regular" matrix inverse such as <code>{solve.default}</code>.</dd>
-      <dt>tol,eps</dt>
-      <dd>passed to <code>ginv</code>.</dd>
+inverse (default: an optimized version of <code><a href='http://www.inside-r.org/r-doc/MASS/ginv'>ginv</a></code>). In
+some cases it is possible to speed up the process by using
+a function that computes a "regular" matrix inverse such as
+<code>{solve.default}</code>.</dd>
+      <dt>tol</dt>
+      <dd>relative tolerance; convergence is achieved if the difference of
+all residuals (relative to the corresponding total) is smaller than this
+tolerance.</dd>
     </dl>
     
     <div class="Calibrate sample weights">
@@ -134,23 +149,13 @@ American Statistical Association</em>, <b>88</b>(423), 1013--1020.</p>
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>data(eusilc)
-# construct auxiliary 0/1 variables for genders
-aux &lt;- calibVars(eusilc$rb090)
-# population totals
-totals &lt;- c(3990798, 4191431)
-# compute g-weights
-g &lt;- calibWeights(aux, eusilc$rb050, totals)
-
-# compute final weights
-weights &lt;- g * eusilc$rb050
-summary(weights)
-</div>
-<div class='output'>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  356.9   492.5   529.1   551.8   613.0  1035.0 
-</div>
-<div class='input'>
-g2 &lt;- calibWeights(aux, eusilc$rb050, totals, method = &quot;linear&quot;, ginv = solve)
+    <pre class="examples"><div class='input'>obs &lt;- 1000
+vars &lt;- 100
+Xs &lt;- matrix(runif(obs * vars), nrow = obs)
+d &lt;- runif(obs) / obs
+totals &lt;- rep(1, vars)
+g &lt;- calibWeights(Xs, d, totals, method = &quot;linear&quot;, ginv = solve)
+g2 &lt;- calibWeights(Xs, d, totals, method = &quot;raking&quot;)
 </div></pre>
   </div>
   <div class="span4">
@@ -161,10 +166,6 @@ g2 &lt;- calibWeights(aux, eusilc$rb050, totals, method = &quot;linear&quot;, gi
       <li>survey</li>
     </ul> -->
       
-    <h2>See also</h2>
-    
-<code><a href='calibVars.html'>calibVars</a></code>
-
     
     <h2>Author</h2>
     
@@ -176,7 +177,7 @@ Andreas Alfons
       
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
-<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://getbootstrap.com">bootstrap</a>.</p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
       </footer>
     </div>
   </body>
