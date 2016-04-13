@@ -13,5 +13,7 @@ LazyData: true
 Suggests:
     testthat,
     sampling
-GitHub: https://github.com/grake/grake
+URL: http://grake.github.io/grake
+URLNote: https://github.com/grake/grake
+BugReports: https://github.com/grake/grake/issues
 RoxygenNote: 5.0.1
