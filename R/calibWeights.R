@@ -31,10 +31,13 @@
 #'   bound (which must be larger than or equal to 1).
 #' @param maxit a numeric value giving the maximum number of iterations.
 #' @param ginv a function that computes the Moore-Penrose generalized
-#'   inverse (default: \code{\link[MASS]{ginv}}). In some cases it is possible to
-#'   use a function that computes a "regular" matrix inverse such as
+#'   inverse (default: an optimized version of \code{\link[MASS]{ginv}}). In
+#'   some cases it is possible to speed up the process by using
+#'   a function that computes a "regular" matrix inverse such as
 #'   \code{{solve.default}}.
-#' @param tol,eps passed to \code{ginv}.
+#' @param tol relative tolerance; convergence is achieved if the difference of
+#'   all residuals (relative to the corresponding total) is smaller than this
+#'   tolerance.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
@@ -64,14 +67,12 @@
 #' g <- calibWeights(Xs, d, totals, method = "linear", ginv = solve)
 #' g2 <- calibWeights(Xs, d, totals, method = "raking")
 #' @export
-#' @import MASS
 calibWeights <- function(X, d, totals, q = NULL,
         method = c("raking", "linear", "logit"),
         bounds = c(0, 10), maxit = 500,
-        ginv = MASS::ginv,
-        tol = 1e-06,
-        eps = .Machine$double.eps) {
-
+        ginv = gginv(),
+        tol = 1e-06)
+{
     ## initializations and error handling
     X <- as.matrix(X)
     d <- as.numeric(d)
@@ -102,7 +103,7 @@ calibWeights <- function(X, d, totals, q = NULL,
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
-        lambda <- ginv(t(X * d * q) %*% X, tol=eps) %*% (totals - as.vector(t(d) %*% X))
+        lambda <- ginv(t(X * d * q) %*% X) %*% (totals - as.vector(t(d) %*% X))
         g <- 1 + q * as.vector(X %*% lambda)  # g-weights
     } else {
         ## multiplicative method (raking) or logit method
@@ -126,7 +127,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 phi <- t(X) %*% w - totals
                 T <- t(X * w)
                 dphi <- T %*% X  # derivative of phi function (to be inverted)
-                lambda <- lambda - ginv(dphi, tol=eps) %*% phi  # update 'lambda'
+                lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
                 i <- i + 1  # increase iterator
@@ -197,7 +198,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 phi <- t(X1) %*% w1 - totals1
                 T <- t(X1 * w1)
                 dphi <- T %*% X1  # derivative of phi function (to be inverted)
-                lambda <- lambda - ginv(dphi, tol=eps) %*% phi  # update 'lambda'
+                lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 # update g-weights
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)
                 g1 <- getG(u, bounds)
