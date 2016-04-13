@@ -69,9 +69,8 @@ calibWeights <- function(X, d, totals, q = NULL,
         method = c("raking", "linear", "logit"),
         bounds = c(0, 10), maxit = 500,
         ginv = MASS::ginv,
-        tol = 1e-06,
-        eps = .Machine$double.eps) {
-
+        tol = 1e-06)
+{
     ## initializations and error handling
     X <- as.matrix(X)
     d <- as.numeric(d)
@@ -102,7 +101,7 @@ calibWeights <- function(X, d, totals, q = NULL,
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
-        lambda <- ginv(t(X * d * q) %*% X, tol=eps) %*% (totals - as.vector(t(d) %*% X))
+        lambda <- ginv(t(X * d * q) %*% X) %*% (totals - as.vector(t(d) %*% X))
         g <- 1 + q * as.vector(X %*% lambda)  # g-weights
     } else {
         ## multiplicative method (raking) or logit method
@@ -126,7 +125,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 phi <- t(X) %*% w - totals
                 T <- t(X * w)
                 dphi <- T %*% X  # derivative of phi function (to be inverted)
-                lambda <- lambda - ginv(dphi, tol=eps) %*% phi  # update 'lambda'
+                lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
                 i <- i + 1  # increase iterator
@@ -197,7 +196,7 @@ calibWeights <- function(X, d, totals, q = NULL,
                 phi <- t(X1) %*% w1 - totals1
                 T <- t(X1 * w1)
                 dphi <- T %*% X1  # derivative of phi function (to be inverted)
-                lambda <- lambda - ginv(dphi, tol=eps) %*% phi  # update 'lambda'
+                lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 # update g-weights
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)
                 g1 <- getG(u, bounds)
