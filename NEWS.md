@@ -1,3 +1,10 @@
+# grake 0.0-4 (2016-04-13)
+
+- Update package documentation.
+- Rename `calibWeights()` to `dss()`.
+- Don't include default bounds in formals, assign in function instead.
+
+
 # grake 0.0-3 (2016-04-13)
 
 - Remove `eps` argument to `calibWeights()`.
