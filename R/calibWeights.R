@@ -69,7 +69,8 @@
 #' g2 <- dss(Xs, d, totals, method = "raking")
 #' @export
 dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
-                bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06)
+                bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06,
+                attributes = FALSE)
 {
     ## initializations and error handling
     X <- as.matrix(X)
@@ -107,6 +108,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
+        i <- 1L
         lambda <- ginv(t(X * d * q) %*% X) %*% (totals - as.vector(t(d) %*% X))
         g <- 1 + q * as.vector(X %*% lambda)  # g-weights
     } else {
@@ -130,11 +132,6 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
                 i <- i + 1  # increase iterator
-            }
-            ## check whether procedure converged
-            if(any(is.na(g)) || i > maxit) {
-                warning("no convergence")
-                g <- NULL
             }
         } else {
             ## logit (L, U) method
@@ -205,13 +202,17 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 g[indices] <- g1
                 i <- i + 1  # increase iterator
             }
-            ## check whether procedure converged
-            if(any(is.na(g)) || i > maxit) {
-                warning("no convergence")
-                g <- NULL
-            }
         }
+    }
 
+    ## check whether procedure converged
+    success <- !any(is.na(g)) && i <= maxit && tolReached(X, g * d, totals, tol)
+
+    if (attributes) {
+      g <- structure(g, success = success)
+    } else {
+      if (!success)
+        warning("No convergence", call. = FALSE)
     }
 
     ## return g-weights
