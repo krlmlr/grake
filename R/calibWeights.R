@@ -105,10 +105,11 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
         max(abs(crossprod(X, w) - totals) / totals) < tol
     }
 
+    i <- 1L
+
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
-        i <- 1L
         lambda <- ginv(t(X * d * q) %*% X) %*% (totals - as.vector(t(d) %*% X))
         g <- 1 + q * as.vector(X %*% lambda)  # g-weights
     } else {
@@ -120,7 +121,6 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
             g <- rep.int(1, n)  # g-weights
             w <- d  # sample weights
             ## iterations
-            i <- 1
             while(!any(is.na(g)) && !tolReached(X, w, totals, tol) && i <= maxit) {
                 # here 'phi' describes more than the phi function in Deville,
                 # Saerndal and Sautory (1993); it is the whole last term of
@@ -131,7 +131,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
-                i <- i + 1  # increase iterator
+                i <- i + 1L  # increase iterator
             }
         } else {
             ## logit (L, U) method
@@ -165,7 +165,6 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 any(g < bounds[1]) || any(g > bounds[2])
             }
             ## iterations
-            i <- 1
             while(!any(is.na(g)) && (!tolReached(X, g * d, totals, tol) ||
                     anyOutOfBounds(g, bounds)) && i <= maxit) {
                 # if some of the g-weights are outside the bounds, these values
@@ -200,7 +199,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)
                 g1 <- getG(u, bounds)
                 g[indices] <- g1
-                i <- i + 1  # increase iterator
+                i <- i + 1L  # increase iterator
             }
         }
     }
@@ -209,7 +208,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     success <- !any(is.na(g)) && i <= maxit && tolReached(X, g * d, totals, tol)
 
     if (attributes) {
-      g <- structure(g, success = success)
+      g <- structure(g, success = success, iterations = i)
     } else {
       if (!success)
         warning("No convergence", call. = FALSE)
