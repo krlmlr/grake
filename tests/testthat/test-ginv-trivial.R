@@ -10,7 +10,7 @@ test_that('Compare ginv results', {
   expect_equal(MASS::ginv(X), my_ginv(X))
   expect_equal(MASS::ginv(X, tol = 1), gginv(tol = 1)(X))
   expect_equal(MASS::ginv(X, tol = 0.1), gginv(tol = 0.1)(X))
-  X <- matrix(complex(real = runif(rows * cols), imag = runif(rows * cols)),
+  X <- matrix(complex(real = runif(rows * cols), imaginary = runif(rows * cols)),
               rows, cols)
   expect_equal(MASS::ginv(X), my_ginv(X))
 })
