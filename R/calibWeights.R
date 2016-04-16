@@ -39,6 +39,10 @@
 #' @param tol relative tolerance; convergence is achieved if the difference of
 #'   all residuals (relative to the corresponding total) is smaller than this
 #'   tolerance.
+#' @param attributes should additional attributes (currently
+#'   \code{success}, \code{iterations}, \code{method} and \code{bounds})
+#'   be added to the result? If \code{FALSE} (default), a warning is given
+#'   if convergence within the given relative tolerance could not be achieved.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
@@ -69,7 +73,8 @@
 #' g2 <- dss(Xs, d, totals, method = "raking")
 #' @export
 dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
-                bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06)
+                bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06,
+                attributes = FALSE)
 {
     ## initializations and error handling
     X <- as.matrix(X)
@@ -98,6 +103,14 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     }
     method <- match.arg(method)
 
+    # function to determine whether the desired accuracy has
+    # been reached (to be used in the 'while' loop)
+    tolReached <- function(X, w, totals, tol) {
+        max(abs(crossprod(X, w) / totals - 1)) < tol
+    }
+
+    i <- 1L
+
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
@@ -106,19 +119,13 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     } else {
         ## multiplicative method (raking) or logit method
         lambda <- matrix(0, nrow=p)  # initial values
-        # function to determine whether teh desired accuracy has
-        # not yet been reached (to be used in the 'while' loop)
-        tolNotReached <- function(X, w, totals, tol) {
-            max(abs(crossprod(X, w) - totals) / totals) >= tol
-        }
         if(method == "raking") {
             ## multiplicative method (raking)
             # some initial values
             g <- rep.int(1, n)  # g-weights
             w <- d  # sample weights
             ## iterations
-            i <- 1
-            while(!any(is.na(g)) && tolNotReached(X, w, totals, tol) && i <= maxit) {
+            while(!any(is.na(g)) && !tolReached(X, w, totals, tol) && i <= maxit) {
                 # here 'phi' describes more than the phi function in Deville,
                 # Saerndal and Sautory (1993); it is the whole last term of
                 # equation (11.1)
@@ -128,12 +135,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
-                i <- i + 1  # increase iterator
-            }
-            ## check whether procedure converged
-            if(any(is.na(g)) || i > maxit) {
-                warning("no convergence")
-                g <- NULL
+                i <- i + 1L  # increase iterator
             }
         } else {
             ## logit (L, U) method
@@ -167,8 +169,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 any(g < bounds[1]) || any(g > bounds[2])
             }
             ## iterations
-            i <- 1
-            while(!any(is.na(g)) && (tolNotReached(X, g * d, totals, tol) ||
+            while(!any(is.na(g)) && (!tolReached(X, g * d, totals, tol) ||
                     anyOutOfBounds(g, bounds)) && i <= maxit) {
                 # if some of the g-weights are outside the bounds, these values
                 # are moved to the bounds and only the g-weights within the
@@ -202,15 +203,19 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)
                 g1 <- getG(u, bounds)
                 g[indices] <- g1
-                i <- i + 1  # increase iterator
-            }
-            ## check whether procedure converged
-            if(any(is.na(g)) || i > maxit) {
-                warning("no convergence")
-                g <- NULL
+                i <- i + 1L  # increase iterator
             }
         }
+    }
 
+    ## check whether procedure converged
+    success <- !any(is.na(g)) && i <= maxit && tolReached(X, g * d, totals, tol)
+
+    if (attributes) {
+      g <- structure(g, success = success, iterations = i, method = method, bounds = bounds)
+    } else {
+      if (!success)
+        warning("No convergence", call. = FALSE)
     }
 
     ## return g-weights
