@@ -98,6 +98,12 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     }
     method <- match.arg(method)
 
+    # function to determine whether teh desired accuracy has
+    # not yet been reached (to be used in the 'while' loop)
+    tolReached <- function(X, w, totals, tol) {
+        max(abs(crossprod(X, w) - totals) / totals) < tol
+    }
+
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
@@ -106,11 +112,6 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     } else {
         ## multiplicative method (raking) or logit method
         lambda <- matrix(0, nrow=p)  # initial values
-        # function to determine whether teh desired accuracy has
-        # not yet been reached (to be used in the 'while' loop)
-        tolNotReached <- function(X, w, totals, tol) {
-            max(abs(crossprod(X, w) - totals) / totals) >= tol
-        }
         if(method == "raking") {
             ## multiplicative method (raking)
             # some initial values
@@ -118,7 +119,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
             w <- d  # sample weights
             ## iterations
             i <- 1
-            while(!any(is.na(g)) && tolNotReached(X, w, totals, tol) && i <= maxit) {
+            while(!any(is.na(g)) && !tolReached(X, w, totals, tol) && i <= maxit) {
                 # here 'phi' describes more than the phi function in Deville,
                 # Saerndal and Sautory (1993); it is the whole last term of
                 # equation (11.1)
@@ -168,7 +169,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
             }
             ## iterations
             i <- 1
-            while(!any(is.na(g)) && (tolNotReached(X, g * d, totals, tol) ||
+            while(!any(is.na(g)) && (!tolReached(X, g * d, totals, tol) ||
                     anyOutOfBounds(g, bounds)) && i <= maxit) {
                 # if some of the g-weights are outside the bounds, these values
                 # are moved to the bounds and only the g-weights within the
