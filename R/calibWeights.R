@@ -39,6 +39,10 @@
 #' @param tol relative tolerance; convergence is achieved if the difference of
 #'   all residuals (relative to the corresponding total) is smaller than this
 #'   tolerance.
+#' @param attributes should additional attributes (currently
+#'   \code{success}, \code{iterations}, \code{method} and \code{bounds})
+#'   be added to the result? If \code{FALSE} (default), a warning is given
+#'   if convergence within the given relative tolerance could not be achieved.
 #'
 #' @return A numeric vector containing the \emph{g}-weights.
 #'
