@@ -4,7 +4,7 @@
 \name{grake-package}
 \alias{grake}
 \alias{grake-package}
-\title{Generalized raking as described by Deville et al. (1993)}
+\title{Generalized Raking as Described by Deville et al. (1993)}
 \description{
 This package implements functions for generalized raking as
 described in Deville et al. (1993): "Generalized raking procedures in survey

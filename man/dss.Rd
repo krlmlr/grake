@@ -6,7 +6,8 @@
 \title{Calibrate sample weights}
 \usage{
 dss(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
-  bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06)
+  bounds = NULL, maxit = 500, ginv = gginv(), tol = 1e-06,
+  attributes = FALSE)
 }
 \arguments{
 \item{X}{a matrix of calibration variables.}
@@ -42,6 +43,11 @@ a function that computes a "regular" matrix inverse such as
 \item{tol}{relative tolerance; convergence is achieved if the difference of
 all residuals (relative to the corresponding total) is smaller than this
 tolerance.}
+
+\item{attributes}{should additional attributes (currently
+\code{success}, \code{iterations}, \code{method} and \code{bounds})
+be added to the result? If \code{FALSE} (default), a warning is given
+if convergence within the given relative tolerance could not be achieved.}
 }
 \value{
 A numeric vector containing the \emph{g}-weights.
