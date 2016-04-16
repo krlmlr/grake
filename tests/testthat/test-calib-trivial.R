@@ -10,11 +10,15 @@ test_that("Calibrating a unit matrix against a unit vector", {
   for (method in eval(formals(dss)$method)) {
     g <- dss(X, d, totals, method = method)
     expect_equal(g, totals, info = method)
+    expect_null(attr(g, "success"))
+    expect_equal(length(g), N)
+    expect_is(g, "numeric")
   }
 })
 
+
 test_that("Calibrating a unit matrix against a vector with random totals", {
-  N <- 10
+  N <- 12
   X <- diag(N)
   d <- rep(1, N)
   totals <- runif(N)
@@ -22,31 +26,28 @@ test_that("Calibrating a unit matrix against a vector with random totals", {
   for (method in eval(formals(dss)$method)) {
     g <- dss(X, d, totals, method = method)
     expect_equal(g, totals, info = method)
+    expect_null(attr(g, "success"))
+    expect_equal(length(g), N)
+    expect_is(g, "numeric")
   }
 })
 
 
 test_that("Test non-convergence", {
-  N <- 10
-  X <- diag(N)
-  X[1,2] <- 1
-  d <- rep(1, N)
-  totals <- c(2, rep(1, N - 1))
+  X <- matrix(rep(1, 4), nrow = 2)
+  d <- rep(1, 2)
+  totals <- 1:2
 
   for (method in eval(formals(dss)$method)) {
-    if (method == "linear") {
-      g <- dss(X, d, totals, method = method)
-      expect_equal(as.vector(g %*% X), totals, info = method)
-      expect_true(any(g < 0))
-    } else {
-      expect_warning(
-        g <- dss(X, d, totals, method = method),
-        "No convergence")
-      expect_equal(length(g), N)
-      expect_is(g, "numeric")
-    }
+    expect_warning(
+      g <- dss(X, d, totals, method = method),
+      "No convergence")
+    expect_null(attr(g, "success"))
+    expect_equal(length(g), 2)
+    expect_is(g, "numeric")
   }
 })
+
 
 test_that("Calibrating a unit matrix against a unit vector with bounds, failing", {
   N <- 10
@@ -58,6 +59,7 @@ test_that("Calibrating a unit matrix against a unit vector with bounds, failing"
   expect_warning(
     g <- dss(X, d, totals, method = "logit", bounds = bounds),
     "No convergence")
+  expect_null(attr(g, "success"))
   expect_equal(length(g), N)
   expect_is(g, "numeric")
 })
