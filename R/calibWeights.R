@@ -99,8 +99,8 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     }
     method <- match.arg(method)
 
-    # function to determine whether teh desired accuracy has
-    # not yet been reached (to be used in the 'while' loop)
+    # function to determine whether the desired accuracy has
+    # been reached (to be used in the 'while' loop)
     tolReached <- function(X, w, totals, tol) {
         max(abs(crossprod(X, w) - totals) / totals) < tol
     }
