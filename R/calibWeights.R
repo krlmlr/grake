@@ -102,7 +102,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     # function to determine whether the desired accuracy has
     # been reached (to be used in the 'while' loop)
     tolReached <- function(X, w, totals, tol) {
-        max(abs(crossprod(X, w) - totals) / totals) < tol
+        max(abs(crossprod(X, w) / totals - 1)) < tol
     }
 
     i <- 1L
