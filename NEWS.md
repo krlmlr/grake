@@ -1,3 +1,10 @@
+# grake 0.1-1 (2016-04-16)
+
+- g-weights are now returned even in case of non-convergence.
+- New argument `attributes` to `dss()`, if `TRUE` attributes are added to the result.
+- Update `autoroxy` code so that package documentation can be created.
+
+
 # grake 0.1 (2016-04-13)
 
 - Initial GitHub release.
