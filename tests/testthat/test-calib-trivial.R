@@ -7,8 +7,10 @@ test_that("Calibrating a unit matrix against a unit vector", {
   X <- diag(N)
   d <- rep(1, N)
   totals <- rep(1, N)
-  g <- dss(X, d, totals)
-  expect_equal(g, totals)
+  for (method in eval(formals(dss)$method)) {
+    g <- dss(X, d, totals, method = method)
+    expect_equal(g, totals, info = method)
+  }
 })
 
 test_that("Calibrating a unit matrix against a vector with random totals", {
