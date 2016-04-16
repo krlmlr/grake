@@ -208,7 +208,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     success <- !any(is.na(g)) && i <= maxit && tolReached(X, g * d, totals, tol)
 
     if (attributes) {
-      g <- structure(g, success = success, iterations = i)
+      g <- structure(g, success = success, iterations = i, method = method, bounds = bounds)
     } else {
       if (!success)
         warning("No convergence", call. = FALSE)

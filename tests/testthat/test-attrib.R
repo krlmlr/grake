@@ -13,6 +13,11 @@ test_that("Calibrating a unit matrix against a unit vector, with attributes", {
     expect_is(g, "numeric")
     expect_is(attr(g, "iterations"), "integer")
     expect_lt(attr(g, "iterations"), 3)
+    expect_equal(attr(g, "method"), method)
+    if (method == "logit")
+      expect_equal(attr(g, "bounds"), c(0, 10))
+    else
+      expect_null(attr(g, "bounds"))
   }
 })
 
