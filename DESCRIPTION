@@ -11,6 +11,8 @@ Description: This package implements functions for generalized raking as
     sampling".  The code strives to provide performance and ease of use.
 License: GPL-3
 LazyData: true
+Imports:
+    Matrix
 Suggests:
     testthat,
     sampling
