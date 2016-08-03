@@ -4,12 +4,15 @@ Title: Generalized Raking as Described by Deville et al. (1993)
 Version: 0.1-1
 Authors@R: c( person("Kirill", "Müller", role = c("ctb", "cre"), email = "krlmlr+r@mailbox.org"),
     person("Andreas", "Alfons", role = "aut"),
-    person("Matthias", "Templ", role = "aut"))
+    person("Matthias", "Templ", role = "aut"),
+    person("Brian", "Ripley", role = "ctb", comment = "gginv() has been derived from MASS::ginv()"))
 Description: This package implements functions for generalized raking as
     described in Deville et al. (1993): "Generalized raking procedures in survey
     sampling".  The code strives to provide performance and ease of use.
 License: GPL-3
 LazyData: true
+Imports:
+    Matrix
 Suggests:
     testthat,
     sampling

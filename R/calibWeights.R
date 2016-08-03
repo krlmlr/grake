@@ -62,6 +62,7 @@
 #'
 #' @keywords survey
 #'
+#' @importClassesFrom Matrix sparseMatrix
 #' @examples
 #' obs <- 1000
 #' vars <- 100
@@ -76,7 +77,6 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 attributes = FALSE)
 {
     ## initializations and error handling
-    X <- as.matrix(X)
     d <- as.numeric(d)
     totals <- as.numeric(totals)
     haveNA <- c(any(is.na(X)), any(is.na(d)),
@@ -105,6 +105,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     # function to determine whether the desired accuracy has
     # been reached (to be used in the 'while' loop)
     tolReached <- function(X, w, totals, tol) {
+        #' @importMethodsFrom Matrix crossprod
         max(abs(crossprod(X, w) / totals - 1)) < tol
     }
 
@@ -113,7 +114,7 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
     ## computation of g-weights
     if(method == "linear") {
         ## linear method (no iteration!)
-        lambda <- ginv(t(X * d * q) %*% X) %*% (totals - as.vector(t(d) %*% X))
+        lambda <- ginv(crossprod(X * d * q, X)) %*% (totals - as.vector(t(d) %*% X))
         g <- 1 + q * as.vector(X %*% lambda)  # g-weights
     } else {
         ## multiplicative method (raking) or logit method
@@ -128,9 +129,8 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 # here 'phi' describes more than the phi function in Deville,
                 # Saerndal and Sautory (1993); it is the whole last term of
                 # equation (11.1)
-                phi <- t(X) %*% w - totals
-                T <- t(X * w)
-                dphi <- T %*% X  # derivative of phi function (to be inverted)
+                phi <- crossprod(X, w) - totals
+                dphi <- crossprod(X * w, X)  # derivative of phi function (to be inverted)
                 lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 g <- exp(as.vector(X %*% lambda) * q)  # update g-weights
                 w <- g * d  # update sample weights
@@ -194,9 +194,8 @@ dss <- function(X, d, totals, q = NULL, method = c("raking", "linear", "logit"),
                 # here 'phi' describes more than the phi function in Deville,
                 # Saerndal and Sautory (1993); it is the whole last term of
                 # equation (11.1)
-                phi <- t(X1) %*% w1 - totals1
-                T <- t(X1 * w1)
-                dphi <- T %*% X1  # derivative of phi function (to be inverted)
+                phi <- crossprod(X1, w1) - totals1
+                dphi <- crossprod(X1 * w1, X1)  # derivative of phi function (to be inverted)
                 lambda <- lambda - ginv(dphi) %*% phi  # update 'lambda'
                 # update g-weights
                 u <- exp(A * as.vector(X1 %*% lambda) * q1)

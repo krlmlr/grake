@@ -2,3 +2,5 @@
 
 export(dss)
 export(gginv)
+importClassesFrom(Matrix,sparseMatrix)
+importMethodsFrom(Matrix,crossprod)
