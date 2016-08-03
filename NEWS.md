@@ -1,4 +1,11 @@
-# grake 0.1-1 (2016-04-16)
+## grake 0.1-2 (2016-08-03)
+
+- `dss()` now capable of working with sparse matrices internally.
+- `gginv()` generates a function that coerces its input to a matrix.
+- Improve documentation of `grake()`.
+
+
+## grake 0.1-1 (2016-04-16)
 
 - g-weights are now returned even in case of non-convergence.
 - New argument `attributes` to `dss()`, if `TRUE` attributes are added to the result.
