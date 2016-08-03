@@ -33,11 +33,9 @@ gginv <- function(tol = sqrt(.Machine$double.eps), svd = base::svd) {
   env$svd <- svd
   ret <- eval(bquote({
     function(X) {
-      if (length(dim(X)) > 2L || !(is.numeric(X) || is.complex(X))) {
+      X <- as.matrix(X)
+      if (!is.numeric(X) && !is.complex(X)) {
         stop("'X' must be a numeric or complex matrix")
-      }
-      if (!is.matrix(X)) {
-        X <- as.matrix(X)
       }
       Xsvd <- svd(X)
       d <- Xsvd$d
