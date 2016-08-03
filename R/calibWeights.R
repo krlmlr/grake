@@ -8,7 +8,6 @@
 #' Calibrate sample weights according to known marginal population totals.
 #' Based on initial sample weights, the so-called \emph{g}-weights are computed
 #' by generalized raking procedures.
-#'
 #' The final sample weights need to be computed by multiplying the resulting
 #' \emph{g}-weights with the initial sample weights.
 #'
@@ -51,7 +50,7 @@
 #' default calibration method is raking and that the truncated linear method is
 #' not yet implemented.
 #'
-#' @author Andreas Alfons
+#' @author Andreas Alfons, with improvements by Kirill Müller
 #'
 #' @references Deville, J.-C. and \enc{Särndal}{Saerndal}, C.-E. (1992)
 #' Calibration estimators in survey sampling. \emph{Journal of the American
