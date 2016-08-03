@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>dss. grake 0.1-1</title>
+<title>dss. grake 0.1-2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="
-Andreas Alfons
+Andreas Alfons, with improvements by Kirill Müller
 ">
 
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -34,7 +34,7 @@ Andreas Alfons
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">grake 0.1-1</a>
+      <a class="brand" href="#">grake 0.1-2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -119,14 +119,8 @@ A numeric vector containing the <em>g</em>-weights.
 
       <p>Calibrate sample weights according to known marginal population totals.
 Based on initial sample weights, the so-called <em>g</em>-weights are computed
-by generalized raking procedures.</p>
-  
-    </div>
-
-    <div class="Details">
-      <h2>Details</h2>
-
-      <p>The final sample weights need to be computed by multiplying the resulting
+by generalized raking procedures.
+The final sample weights need to be computed by multiplying the resulting
 <em>g</em>-weights with the initial sample weights.</p>
   
     </div>
@@ -175,7 +169,7 @@ g2 &lt;- dss(Xs, d, totals, method = &quot;raking&quot;)
     
     <h2>Author</h2>
     
-Andreas Alfons
+Andreas Alfons, with improvements by Kirill Müller
 
     
   </div>
