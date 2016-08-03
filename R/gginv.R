@@ -4,7 +4,7 @@
 # Original ginv implementation from MASS
 # ---------------------------------------
 
-#' Generalized Inverse of a Matrix using a custom SVD
+#' Generalized Inverse of a Matrix using a custom tolerance or SVD implementation
 #'
 #' The \code{gginv} function creates a function that
 #' calculates the Moore-Penrose generalized inverse of a matrix X using a
@@ -20,7 +20,8 @@
 #' @param svd A function that computes the singular value decomposition of a
 #'   matrix
 #'
-#' @return A MP generalized inverse matrix for X.
+#' @return A function that accepts one argument \code{X} that computes a MP
+#'   generalized inverse matrix for it.
 #'
 #' @seealso \code{\link[MASS]{ginv}}, \code{\link[base]{svd}}
 #'
@@ -32,11 +33,9 @@ gginv <- function(tol = sqrt(.Machine$double.eps), svd = base::svd) {
   env$svd <- svd
   ret <- eval(bquote({
     function(X) {
-      if (length(dim(X)) > 2L || !(is.numeric(X) || is.complex(X))) {
+      X <- as.matrix(X)
+      if (!is.numeric(X) && !is.complex(X)) {
         stop("'X' must be a numeric or complex matrix")
-      }
-      if (!is.matrix(X)) {
-        X <- as.matrix(X)
       }
       Xsvd <- svd(X)
       d <- Xsvd$d

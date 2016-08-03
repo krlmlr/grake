@@ -2,7 +2,7 @@
 % Please edit documentation in R/gginv.R
 \name{gginv}
 \alias{gginv}
-\title{Generalized Inverse of a Matrix using a custom SVD}
+\title{Generalized Inverse of a Matrix using a custom tolerance or SVD implementation}
 \usage{
 gginv(tol = sqrt(.Machine$double.eps), svd = base::svd)
 }
@@ -15,7 +15,8 @@ A relative tolerance to detect zero singular values.
 matrix}
 }
 \value{
-A MP generalized inverse matrix for X.
+A function that accepts one argument \code{X} that computes a MP
+  generalized inverse matrix for it.
 }
 \description{
 The \code{gginv} function creates a function that

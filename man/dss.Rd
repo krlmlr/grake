@@ -56,8 +56,6 @@ A numeric vector containing the \emph{g}-weights.
 Calibrate sample weights according to known marginal population totals.
 Based on initial sample weights, the so-called \emph{g}-weights are computed
 by generalized raking procedures.
-}
-\details{
 The final sample weights need to be computed by multiplying the resulting
 \emph{g}-weights with the initial sample weights.
 }
@@ -77,7 +75,7 @@ g <- dss(Xs, d, totals, method = "linear", ginv = solve)
 g2 <- dss(Xs, d, totals, method = "raking")
 }
 \author{
-Andreas Alfons
+Andreas Alfons, with improvements by Kirill Müller
 }
 \references{
 Deville, J.-C. and \enc{Särndal}{Saerndal}, C.-E. (1992)
