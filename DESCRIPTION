@@ -16,7 +16,7 @@ Imports:
 Suggests:
     testthat,
     sampling
-URL: http://grake.github.io/grake
-URLNote: https://github.com/grake/grake
-BugReports: https://github.com/grake/grake/issues
+URL: http://krlmlr.github.io/grake
+URLNote: https://github.com/krlmlr/grake
+BugReports: https://github.com/krlmlr/grake/issues
 RoxygenNote: 5.0.1
