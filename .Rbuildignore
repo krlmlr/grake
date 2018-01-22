@@ -7,3 +7,5 @@
 ^\.lintr$
 ^Makefile$
 ^makeR
+^appveyor\.yml$
+^tic\.R$
